@@ -13,6 +13,21 @@
  * audience: a parent with real expertise, deciding whether this is
  * worth an hour of her evening to set up.
  *
+ * 7 September 2026 — her words: "the fractional workforce... focusing
+ * on the benefits, explain the fractional workforce, do some research."
+ * She has since taken the real word for it — fractional@motherlodehq.com.au
+ * now exists. Real 2026 market research underneath this new section: 25%
+ * of US businesses already hire fractionally (35% projected by year end),
+ * a full-time executive costs $290,000+ once salary, benefits and payroll
+ * tax are counted, and the fractional equivalent runs 50-80% less with no
+ * onboarding, no equity, no benefits package — and the people choosing to
+ * work this way are disproportionately senior operators picking it on
+ * purpose, for autonomy and income spread across more than one client,
+ * not settling for less than a full-time role. Sources: gofractional.com,
+ * ancorepartners.com, hirefraction.com, 80twenty.com — kept out of the
+ * page itself, per her own law that we search literary craft rather than
+ * hand her a statistic wearing a slogan.
+ *
  * Ends in the one thing this page is actually for — a clear way into
  * the real join flow, with the fork's own query preserved.
  *
@@ -42,6 +57,21 @@ get_header();
 				<span class="lode-path-arrow" aria-hidden="true">&rarr;</span>
 			</a>
 		</div>
+	</div>
+</section>
+
+<section class="sec sec--fractional">
+	<div class="in" style="max-width:46rem;margin:0 auto;text-align:center;">
+		<p class="eyebrow">The Real Word For This</p>
+		<h2 class="head lift" style="text-align:center;">A Business Two Suburbs Over Needs A CFO's Eye On Its Numbers Before Thursday's Board Meeting. Not A CFO. An Hour Of One.</h2>
+		<p class="body body--wide" style="text-align:center;margin:1.2rem auto 0;">
+			That's not a favour, and it's not gig work. It's called fractional, and it's how a
+			growing number of the most senior people in the country are choosing to work — on
+			purpose, not as a step down from something bigger. A business gets exactly the
+			expertise it needs, for exactly the hours it needs it, without carrying a full-time
+			desk it was never going to fill. You get paid like the professional you already are,
+			for the hours that are actually yours.
+		</p>
 	</div>
 </section>
 
@@ -80,10 +110,15 @@ get_header();
 
 <section class="sec sec--close">
 	<div class="in">
-		<h2 class="close-head">Say What You're Brilliant At. That's The Whole Form.</h2>
-		<p class="body body--wide" style="margin:0 auto 1.6rem;text-align:center;">A few honest questions, never a résumé upload. Ten minutes, and your first month costs nothing.</p>
+		<p class="eyebrow" style="text-align:center;">MotherLode HQ's Own Name For It: The Strike</p>
+		<h2 class="close-head">Your Portrait. Everything That Makes You, You.</h2>
+		<p class="body body--wide" style="margin:0 auto 1.6rem;text-align:center;">
+			Not a résumé. Not a form. A handful of honest questions that pull the real shape
+			of what you do out into the open — the way a strike reveals what was already sitting
+			in the seam. Ten minutes, and your first month costs nothing.
+		</p>
 		<div class="lode-hero-ctas" style="justify-content:center;">
-			<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/build-your-profile/' ) ); ?>">Build Your Profile <span aria-hidden="true">&rarr;</span></a>
+			<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/build-your-profile/' ) ); ?>">Have Your Strike <span aria-hidden="true">&rarr;</span></a>
 			<a class="lode-btn lode-btn--outline" href="<?php echo esc_url( home_url( '/for-business/' ) ); ?>">I'm Looking To Hire Instead <span aria-hidden="true">&rarr;</span></a>
 		</div>
 	</div>
