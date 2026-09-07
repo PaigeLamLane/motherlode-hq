@@ -159,15 +159,21 @@ function localilly_send_them_the_way_back(): void {
 		$name = (string) get_post_meta( $id, '_ll_name', true );
 		$link = add_query_arg( 'comeback', $token, home_url( '/your-place/' ) );
 
+		/*
+		 * 1 September 2026 — real bug, found on a sweep for leftover
+		 * LocaLilly branding: this letter is real mail sent to real
+		 * people, and it was still saying LocaLilly's name throughout.
+		 * Fixed.
+		 */
 		$letter  = $name ? sprintf( "Hello %s,\n\n", $name ) : "Hello,\n\n";
-		$letter .= "Here is your way back into your place on LocaLilly.\n\n";
+		$letter .= "Here is your way back into your place on MotherLode HQ.\n\n";
 		$letter .= $link . "\n\n";
 		$letter .= "One press and you are exactly where you were.\n\n";
-		$letter .= "It stays open for three days, and it is yours alone.\n\nLocaLilly";
+		$letter .= "It stays open for three days, and it is yours alone.\n\nMotherLode HQ";
 
 		wp_mail(
 			$mail,
-			'Your Way Back Into LocaLilly',
+			'Your Way Back Into MotherLode HQ',
 			$letter
 		);
 	}

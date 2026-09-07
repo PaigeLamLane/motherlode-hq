@@ -146,7 +146,7 @@ function localilly_how_it_arrives(): void {
 		 */
 		esc_url( is_front_page() ? home_url( '/' ) : get_permalink() ),
 		esc_url( $card ),
-		esc_attr( 'The LocaLilly nameplate over a young person walking a dog down a front path' ),
+		esc_attr( 'The MotherLode HQ mark' ),
 		esc_attr( $title ),
 		esc_attr( $line ),
 		esc_url( $card )
@@ -154,98 +154,32 @@ function localilly_how_it_arrives(): void {
 }
 add_action( 'wp_head', 'localilly_how_it_arrives', 4 );
 
-/**
- * The icon somebody keeps on their home screen.
- *
- * MEASURED BY EAGLE EYE AND IT IS A REAL FAULT. The icon WordPress was handing
- * out is transparent, and **iOS paints black behind a transparent icon** — so
- * anybody adding LocaLilly to their home screen got her mark on a black square.
- * Black belongs to nobody's brand and least of all to hers.
- *
- * So the mark is flattened onto her own purple, opaque, at the three sizes a
- * phone actually asks for. Her ruling about never putting her mark on white
- * has the same root: **a mark with no ground of its own inherits whatever the
- * device decides**, and the device decides badly.
- *
- * The links are printed at priority 3 so they stand above WordPress's own, and
- * WordPress's transparent set is removed rather than left to compete.
- */
-function localilly_home_screen(): void {
-	$img = get_stylesheet_directory_uri() . '/assets/img/';
-
-	printf(
-		'<link rel="apple-touch-icon" sizes="180x180" href="%1$stouch-180.png">' . "\n"
-		. '<link rel="icon" type="image/png" sizes="192x192" href="%1$sicon-192.png">' . "\n"
-		. '<link rel="icon" type="image/png" sizes="512x512" href="%1$sicon-512.png">' . "\n"
-		. '<link rel="manifest" href="%2$s">' . "\n"
-		. '<meta name="theme-color" content="#E85387">' . "\n"
-		. '<meta name="apple-mobile-web-app-title" content="MotherLode HQ">' . "\n",
-		esc_url( $img ),
-		esc_url( home_url( '/motherlodehq.webmanifest' ) )
-	);
-}
-add_action( 'wp_head', 'localilly_home_screen', 3 );
-
-/**
- * WordPress's own transparent set stands down.
- */
-remove_action( 'wp_head', 'wp_site_icon', 99 );
-
 /*
- * ── THE MANIFEST, SERVED WITHOUT A REWRITE RULE ───────────────────────
+ * ── "SOMETIMES IT'S THERE, SOMETIMES IT'S NOT" — 2 September 2026 ──────
  *
- * The first version added a rewrite rule and answered on template_redirect. It
- * returned a 404 page with a 404 status, and **the link in the head pointed
- * confidently at it the whole time** — which is the same shape as everything
- * else found today: a mechanism reporting success while doing nothing.
+ * Her exact words about the favicon. Real cause, found by reading the
+ * actual page head rather than guessing: TWO separate systems were both
+ * trying to solve "the icon on a browser tab and a home screen," each
+ * unaware of the other.
  *
- * A rewrite rule depends on the rules being flushed after the rule is
- * registered, on nothing else claiming the path, and on the request reaching
- * WordPress's routing at all. Three things that can each be true and still
- * leave a 404.
+ * This theme had its own bespoke localilly_home_screen() and
+ * localilly_manifest() — LocaLilly's own answer, from before this
+ * business existed, cloned across along with everything else. But
+ * lamoureux-accounts already ships a real, shared, cross-business
+ * answer to the exact same problem
+ * (class-lamoureux-on-her-phone.php) — its own manifest, its own
+ * apple-touch-icon, built once and meant to serve all forty-six
+ * businesses identically. Both were live at once, both printed a
+ * link tag, and which one a given browser or cache picked was never
+ * something anybody controlled.
  *
- * Reading the path on `init` depends on none of them. Fewer moving parts is
- * the fix rather than a better rule.
+ * The shared one is correct and stays. This theme's own duplicate is
+ * removed outright — not disabled, not deprioritised, gone — so
+ * there is exactly one answer instead of two competing ones. The
+ * shared system reads WordPress's own Site Icon option directly — it
+ * was pointing at a leftover placeholder file from before the real
+ * mark existed, so that's the one real thing fixed here: Site Icon
+ * now points at the same icon-512.png this theme already uses
+ * everywhere else, set once, directly, the same way she'd set it
+ * from Appearance → Customize.
  */
-function localilly_manifest(): void {
-	$path = wp_parse_url( (string) ( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_PATH );
-
-	if ( '/motherlodehq.webmanifest' !== untrailingslashit( (string) $path ) ) {
-		return;
-	}
-
-	$img = get_stylesheet_directory_uri() . '/assets/img/';
-
-	header( 'Content-Type: application/manifest+json; charset=utf-8' );
-	header( 'Cache-Control: public, max-age=3600' );
-
-	echo wp_json_encode(
-		array(
-			'name'             => 'MotherLode HQ',
-			'short_name'       => 'MotherLode',
-			'description'      => localilly_the_line(),
-			'start_url'        => home_url( '/' ),
-			'scope'            => home_url( '/' ),
-			'display'          => 'standalone',
-			'background_color' => '#E85387',
-			'theme_color'      => '#E85387',
-			'icons'            => array(
-				array(
-					'src'     => $img . 'icon-192.png',
-					'sizes'   => '192x192',
-					'type'    => 'image/png',
-					'purpose' => 'any',
-				),
-				array(
-					'src'     => $img . 'icon-512.png',
-					'sizes'   => '512x512',
-					'type'    => 'image/png',
-					'purpose' => 'any',
-				),
-			),
-		),
-		JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
-	);
-	exit;
-}
-add_action( 'init', 'localilly_manifest', 1 );

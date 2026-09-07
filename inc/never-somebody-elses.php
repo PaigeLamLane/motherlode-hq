@@ -65,6 +65,28 @@ defined( 'ABSPATH' ) || exit;
  * out a key, and a stored copy of it would hand the same key to everybody.
  */
 function localilly_is_somebodys(): bool {
+	/*
+	 * REAL GAP, FOUND 3 September 2026, testing MotherLode HQ's own new
+	 * Discussions panel live: this comment block's own table claims
+	 * "/dashboard/ no-cache, the route this fix was for" — true for
+	 * LocaLilly's cookie-key identity system, never true for a real
+	 * WordPress-authenticated professional. MotherLode's professionals
+	 * log in the ordinary way; neither cookie jar below is ever set for
+	 * them, so their dashboard — bookings, reviews, and now every message
+	 * thread — had no no-cache protection at all. Caught it directly: a
+	 * reply written to the shared lamoureux-messages table (a raw insert,
+	 * invisible to LiteSpeed's own post/comment-based purge triggers)
+	 * stayed invisible on reload until an explicit cache purge.
+	 *
+	 * The function's own stated principle — "a page is dangerous to
+	 * store when it differs by person" — already covers this without a
+	 * special case: any page rendered for a signed-in visitor differs by
+	 * who they are, full stop.
+	 */
+	if ( is_user_logged_in() ) {
+		return true;
+	}
+
 	/* Whoever is carrying a key is a person rather than a page. */
 	foreach ( array( LOCALILLY_KEYJAR, LOCALILLY_THEIRJAR ) as $jar ) {
 		if ( defined( $jar ) || isset( $_COOKIE[ $jar ] ) ) {
@@ -139,7 +161,7 @@ function localilly_keep_nobody(): void {
 		define( 'DONOTCACHEPAGE', true );
 	}
 
-	do_action( 'litespeed_control_set_nocache', 'LocaLilly — this page belongs to one person' );
+	do_action( 'litespeed_control_set_nocache', 'MotherLode HQ — this page belongs to one person' );
 
 	if ( ! headers_sent() ) {
 		header( 'Cache-Control: private, no-store, no-cache, must-revalidate, max-age=0', true );

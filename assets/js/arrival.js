@@ -1,13 +1,6 @@
 ( function () {
 	'use strict';
 
-	/*
-	 * 31 August 2026 — was getElementById, one place only. Her ruling: on
-	 * the homepage the line moves to the end of the hero — the proof
-	 * after the discovery, not the widget before it. querySelectorAll so
-	 * both the header's (hidden by CSS on the front page) and the new
-	 * one at the foot of the hero populate from the one script.
-	 */
 	var els = document.querySelectorAll( '.arrival' );
 	var el = els[0];
 	if ( ! el ) {
@@ -66,15 +59,6 @@
 	}
 
 	function bank() {
-		/*
-		 * 31 August 2026 — was LocaLilly's weather-driven bank (mowing,
-		 * dog-walking, washing the car), which doesn't map to a
-		 * professional-skills marketplace no matter the temperature.
-		 * Replaced with lines that don't need weather to make sense, kept
-		 * only the time-of-day/weekend/school-hours awareness, since that
-		 * part genuinely fits — this is a site built around real hours in
-		 * a real day.
-		 */
 		if ( isLate() ) {
 			return [
 				'A professional near you could start first thing tomorrow.',

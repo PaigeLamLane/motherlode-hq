@@ -16,72 +16,185 @@ declare( strict_types=1 );
 defined( 'ABSPATH' ) || exit;
 
 get_header();
+
+/*
+ * 1 September 2026 — the mark stopped being an image entirely. Checked
+ * the actual served lode-mark-*.webp file directly and found her
+ * constellation pattern (the nine dots, the web of lines, the category
+ * labels) baked flat into the same file as the LODE letters — frozen,
+ * un-animatable, and about to be doubled if a live version were laid on
+ * top of it. Her words: "turn my constellation pattern into something
+ * that is absolutely stunningly beautiful. That's hugely important."
+ * Retired the raster file from both places it appeared (the hero and
+ * the threshold) in favour of template-parts/lode-mark.php — one real,
+ * live SVG: gradient letters plus genuine animated nodes and lines,
+ * shared by both so they can never quietly drift apart from each other.
+ * The old lode-mark-*.webp files are untouched on the server, not
+ * deleted, in case anything else still points at them.
+ */
 ?>
 
-<section class="lode-hero">
-	<div class="in lode-hero-grid">
-		<div class="lode-hero-copy">
-			<h1 class="lode-hero-h1"><span class="lode-hero-h1-lead">The Untapped</span><br><span class="lode-hero-h1-word">Lode<span class="lode-hero-dot" aria-hidden="true"></span></span></h1>
-
-			<p class="lode-hero-define"><em>Lode</em> — a rich, continuous vein of ore, the seam that makes the whole find worth digging for.</p>
-
-			<p class="lode-hero-lede">
-				Skilled parents, home with their children, earning by the hour
-				from real expertise. Businesses getting exactly that skill,
-				without the overhead of a full-time hire.
-			</p>
-
-			<div class="lode-hero-ctas">
-				<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/join/' ) ); ?>">Discover the Lode <span aria-hidden="true">&rarr;</span></a>
-				<a class="lode-btn lode-btn--outline" href="<?php echo esc_url( home_url( '/join/?as=talent' ) ); ?>">Offer your expertise <span aria-hidden="true">&rarr;</span></a>
+<?php
+/*
+ * ── THE THRESHOLD ────────────────────────────────────────────────────
+ * 1 September 2026, second pass — her words the first time round: "that
+ * is not a moment... make them like they're 3D, they're coming out...
+ * don't give me flat, don't give me boring... you put my magnificent
+ * image tiny." Rebuilt bigger in every dimension that matters: each word
+ * now fills real width of the screen, arrives with actual depth (layered
+ * colour, not a flat fade), the mark is the dominant thing on the screen
+ * rather than an icon, and the two paths are the moment's own resolution
+ * — real buttons, right here, not a preview of something further down.
+ * Never a dark ground — her standing word on that — the same soft pink
+ * the rest of the site stands on, with her own gradient breathing behind
+ * the words instead.
+ *
+ * Second pass, same day — her words: "I told you to get rid of the
+ * words. I don't want your first part of the intro — fucking ugly. I
+ * just want my logo at the top, then the LODE." The whole breath-paced
+ * phrase reveal (the "MotherLode HQ" title card, "You / should never /
+ * have to choose") is gone. What's left is simpler and calmer: her real
+ * logo, then the mark — and the movement she actually wants lives in the
+ * mark's own floating category words now, not in text beats or bouncing
+ * buttons.
+ *
+ * Shown on every single visit, for everyone — her ruling, given
+ * directly: "the welcome should be so beautiful that everyone wants to
+ * see it all the time." Skipped outright only for anyone whose browser
+ * has asked for reduced motion, and never able to trap anyone: the two
+ * paths are real links the moment CSS reveals them, whether or not
+ * JavaScript ever runs at all.
+ */
+?>
+<div class="lode-threshold" id="lode-threshold">
+	<div class="lode-threshold-glow" aria-hidden="true"></div>
+	<div class="lode-threshold-ring" aria-hidden="true"></div>
+	<div class="lode-threshold-inner">
+		<img class="lode-threshold-logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/img/motherlode-logo.png' ); ?>" alt="MotherLode HQ" width="450" height="300">
+		<div class="lode-threshold-finale">
+			<div class="lode-threshold-mark">
+				<?php get_template_part( 'template-parts/lode-mark' ); ?>
 			</div>
-		</div>
 
-		<div class="lode-hero-mark">
 			<?php
 			/*
-			 * 31 August 2026, third pass — the old lode-mark-*.webp files were
-			 * all silently 348x348 regardless of filename (checked via the
-			 * browser's own naturalWidth/naturalHeight), so the mark was
-			 * being upscaled from a tiny source no matter what CSS size it
-			 * was given — that's why "bigger" never actually looked sharp
-			 * or confident. Regenerated clean from her original high-res
-			 * reference file, background removed properly, real aspect
-			 * ratio (0.86 tall:wide, not square).
+			 * 1 September 2026, third pass — her words: "let's play. You
+			 * should never have to choose; it needs to come in under
+			 * [the] Lode, but give it some space before you bring it in
+			 * and before the buttons come in." Back as one clean line —
+			 * not broken into the word-by-word beats she called ugly
+			 * earlier — sitting between the mark and the fork, each with
+			 * real space held before it arrives.
 			 */
-			$lode_mark_base = get_stylesheet_directory_uri() . '/assets/img/lode-mark-clean-';
-			/*
-			 * 31 August 2026 — a browser/edge cache had a stale, tiny
-			 * (348x348) response cached against these exact filenames from
-			 * before the real asset existed at this path, and kept serving
-			 * it after the real file was uploaded — LiteSpeed's page-cache
-			 * purge doesn't touch that. A version query string forces every
-			 * cache layer to treat this as a new resource.
-			 */
-			$lode_mark_v = '2';
 			?>
-			<img
-				src="<?php echo esc_url( $lode_mark_base . '1100.webp?v=' . $lode_mark_v ); ?>"
-				srcset="<?php echo esc_attr( $lode_mark_base . '700.webp?v=' . $lode_mark_v . ' 700w, ' . $lode_mark_base . '1100.webp?v=' . $lode_mark_v . ' 1100w, ' . $lode_mark_base . '1600.webp?v=' . $lode_mark_v . ' 1600w, ' . $lode_mark_base . '2200.webp?v=' . $lode_mark_v . ' 2200w' ); ?>"
-				sizes="(min-width: 900px) 56vw, 92vw"
-				width="1600" height="1378" alt="" fetchpriority="high">
-		</div>
-	</div>
+			<p class="lode-threshold-choose">You Should Never <strong>Have To Choose.</strong></p>
 
-	<div class="lode-strip">
-		<div class="in lode-strip-in">
-			<p class="lode-strip-head">You Should Never<br><strong>Have To Choose.</strong></p>
-			<span class="lode-strip-divider" aria-hidden="true"></span>
-			<div class="lode-paths">
-				<a class="lode-path" href="<?php echo esc_url( home_url( '/join/?need=help' ) ); ?>">
-					<span class="lode-path-arrow lode-path-arrow--a" aria-hidden="true">&rarr;</span>
-					<span class="lode-path-text">I need<br><span class="lode-path-accent lode-path-accent--a">exceptional help</span></span>
+			<?php
+			/*
+			 * Real bug, found and named precisely: "a visible double gap
+			 * inside both button labels." The label text sat as bare text
+			 * nodes directly inside a flex container with `gap` — gap
+			 * inserts space between every child box, including the
+			 * anonymous boxes browsers wrap bare text in, so it opened a
+			 * second, unwanted gap mid-sentence. One span around the
+			 * whole label, same fix as the strip's own paths already had.
+			 */
+			?>
+			<div class="lode-threshold-paths">
+				<a class="lode-path lode-threshold-path lode-path--a" href="<?php echo esc_url( home_url( '/for-business/' ) ); ?>">
+					<span class="lode-path-text">I need <strong>exceptional help</strong></span>
+					<span class="lode-path-arrow" aria-hidden="true">&rarr;</span>
 				</a>
-				<a class="lode-path" href="<?php echo esc_url( home_url( '/join/?have=expertise' ) ); ?>">
-					<span class="lode-path-arrow lode-path-arrow--b" aria-hidden="true">&rarr;</span>
-					<span class="lode-path-text">I have expertise<br><span class="lode-path-accent lode-path-accent--b">to offer</span></span>
+				<a class="lode-path lode-threshold-path lode-path--b" href="<?php echo esc_url( home_url( '/for-talent/' ) ); ?>">
+					<span class="lode-path-text">I'm carrying <strong>a mother lode of expertise</strong></span>
+					<span class="lode-path-arrow" aria-hidden="true">&rarr;</span>
 				</a>
 			</div>
+		</div>
+	</div>
+	<button type="button" class="lode-threshold-skip" id="lode-threshold-skip">Skip <span aria-hidden="true">&rarr;</span></button>
+</div>
+<noscript><style>.lode-threshold{display:none!important;}</style></noscript>
+<script>
+(function(){
+	/*
+	 * 1 September 2026 — her ruling, final: "I don't want one per
+	 * browser tab. Get rid of that. The welcome should be so beautiful
+	 * that everyone wants to see it all the time." Not a dev-mode
+	 * toggle — a real decision about what this moment is. It plays in
+	 * full on every single visit, for everyone, permanently. The only
+	 * two ways it doesn't: a browser that asks for reduced motion
+	 * (skipped outright, below), and the Skip control for anyone who
+	 * wants past it right now.
+	 */
+	var el = document.getElementById('lode-threshold');
+	if (!el) return;
+	var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if ( reduced ) { el.parentNode.removeChild(el); return; }
+	document.documentElement.classList.add('lode-threshold-active');
+	var auto = null;
+	function dismiss() {
+		if (!el.parentNode) return;
+		if (auto) { window.clearTimeout(auto); auto = null; }
+		document.documentElement.classList.remove('lode-threshold-active');
+		el.classList.add('is-leaving');
+		window.setTimeout(function(){ if (el.parentNode) { el.parentNode.removeChild(el); } }, 900);
+	}
+	var skip = document.getElementById('lode-threshold-skip');
+	if (skip) { skip.addEventListener('click', dismiss); }
+
+	/*
+	 * 4 September 2026 — her words: "I don't want to skip or take the
+	 * skip out. Just have the entry and then it goes into the website."
+	 * Skip stays, unchanged, for anyone who wants past it sooner. But
+	 * until now the entry had no ending of its own — it played out and
+	 * then simply sat there, fully finished, going nowhere until
+	 * somebody clicked something. It now carries itself into the site:
+	 * once the last thing on screen (the two paths, arriving at 3400ms
+	 * + their own 700ms fade) has had a real few seconds to be read,
+	 * it lifts away on its own — the same graceful exit Skip already
+	 * triggers, never a different, lesser one for whoever waits.
+	 */
+	auto = window.setTimeout(dismiss, 7800);
+})();
+</script>
+
+<?php
+/*
+ * ── THE HERO, REBUILT AGAIN — 1 September 2026 ──────────────────────────
+ * Her exact words, given directly, in order: "my logo, then put the logo
+ * up in the corner, then a massive L-O-D-E. Do it better — much better.
+ * And then underneath that, you should never have to choose, and then
+ * the buttons." The logo is already the corner of the topbar above this
+ * — nothing else on the page needed a second copy of it. Everything else
+ * here is new: one centred column, the mark itself now the entire hero
+ * (no heading competing with it, no lede paragraph beside it), the
+ * choose-line underneath it, the fork underneath that.
+ *
+ * The two paths are rebuilt too, not just moved — Aunt Tea's measured
+ * critique of the old ones stands: heavy gradient-filled pills read as
+ * "the default button of every product made since 2015," fighting the
+ * mark's fine-lined, airy quality rather than serving it. Outlined,
+ * single-colour, quieter — closer to what the mark itself is doing.
+ */
+?>
+<section class="lode-hero">
+	<div class="in lode-hero-stack">
+		<div class="lode-hero-mark lode-hero-mark--big">
+			<?php get_template_part( 'template-parts/lode-mark' ); ?>
+		</div>
+
+		<p class="lode-hero-choose">You Should Never <strong>Have To Choose.</strong></p>
+
+		<div class="lode-paths">
+			<a class="lode-path lode-path--a" href="<?php echo esc_url( home_url( '/for-business/' ) ); ?>">
+				<span class="lode-path-text">I need <strong>exceptional help</strong></span>
+				<span class="lode-path-arrow" aria-hidden="true">&rarr;</span>
+			</a>
+			<a class="lode-path lode-path--b" href="<?php echo esc_url( home_url( '/for-talent/' ) ); ?>">
+				<span class="lode-path-text">I'm carrying <strong>a mother lode of expertise</strong></span>
+				<span class="lode-path-arrow" aria-hidden="true">&rarr;</span>
+			</a>
 		</div>
 	</div>
 </section>
@@ -96,187 +209,130 @@ get_header();
 
 <?php
 /*
+ * ── THE THREE FACTS — removed, 3 September 2026 ──────────────────────
+ * Built 2 September, struck the next day — her words, direct: "I don't
+ * want the three facts. Remember, I told you to get rid of the three
+ * facts." Taken out rather than hidden, so a later pass doesn't find
+ * a commented-out block and wonder if it was meant to come back.
+ */
+?>
+
+<?php
+/*
+ * ── THE SIGNPOST — 2 September 2026, made real on the homepage ──────
+ * Built and iterated on a separate practice page first (three real
+ * passes on her feedback — "a flag? That's just a fucking box," then
+ * "I don't want it to look like a flag," each one a genuine change,
+ * not a restyle) before she confirmed she wanted it here. History and
+ * the real Chromium bug found building it are kept in full at
+ * template-parts/signpost.php's own header comment, not repeated here.
+ */
+get_template_part( 'template-parts/signpost' );
+?>
+
+<?php
+/*
  * ── THE LODE MAP ───────────────────────────────────────────────────────
- * Her eight, matching the hero's own mark exactly.
+ * 1 September 2026 — removed outright, her ruling: LocaLilly's own
+ * scrolling rail component, carrying a real scroll bug (something sitting
+ * ~2 inches from the left edge that wouldn't scroll with the rest), and
+ * redundant anyway — "A Lode In Every Field" below already shows all 13
+ * categories properly, in the page's own voice rather than a borrowed
+ * carousel. Not replaced with anything; that section does this job now.
  */
 ?>
-<section class="sec sec--posts">
-	<div class="in">
-		<p class="eyebrow float">Real Skill, Every Field</p>
-
-		<?php
-		$localilly_categories = array(
-			'post_admin'      => 'Admin',
-			'post_strategy'   => 'Strategy',
-			'post_design'     => 'Design',
-			'post_finance'    => 'Finance',
-			'post_education'  => 'Education',
-			'post_technology' => 'Technology',
-			'post_wellbeing'  => 'Wellbeing',
-			'post_home'       => 'Home',
-		);
-		$localilly_i = -1;
-		?>
-
-		<ul class="rail">
-			<?php foreach ( $localilly_categories as $localilly_key => $localilly_category ) : ?>
-				<?php ++$localilly_i; ?>
-				<li class="rail-item float" style="--n: <?php echo (int) $localilly_i; ?>">
-					<?php $localilly_slug = str_replace( array( 'post_', '_' ), array( '', '-' ), $localilly_key ); ?>
-					<a class="plate post-face press<?php echo localilly_has_picture( $localilly_key ) ? ' has-picture' : ''; ?>"
-						href="<?php echo esc_url( add_query_arg( 'doing', $localilly_slug, home_url( '/join/' ) ) ); ?>">
-						<?php localilly_picture( $localilly_key, 'medium_large', 'behind' ); ?>
-						<span class="post-name"><?php echo wp_kses_post( $localilly_category ); ?></span>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		</ul>
-		<p class="rail-hint">Browse any time</p>
-	</div>
-</section>
 
 <?php
 /*
- * ── A LODE IN EVERY FIELD ────────────────────────────────────────────
- * Her instruction, 31 August: take the eight fields from the scroll
- * above — she called that "not bad" — and give them a real section each
- * lives in, not just a passing rail. Copy drafted here, not hers or
- * Verity's yet — worth a pass from Verity before this is called final.
+ * ── A LODE IN EVERY FIELD — PARKED, 1 September 2026 ─────────────────
+ * Her words: "we don't want a category list — get rid of it... it's
+ * going to go, but keep it and park it somewhere for me." This was the
+ * "wall of ten cards" straight after the hero that she called boring and
+ * a choice overload. The two-gateway fork in the strip above does that
+ * job now. Full markup, copy and the gradient-card styling are kept —
+ * not deleted — in template-parts/archived-lode-fields.php, ready to be
+ * called back in wherever it belongs next (my instinct: inside the
+ * business-facing path, once that page exists).
  */
-$lode_fields = array(
-	array(
-		'name'  => 'Admin',
-		'said'  => 'The steady hand behind a business that runs on time — invoicing, scheduling, the calm nobody else sees.',
-	),
-	array(
-		'name'  => 'Strategy',
-		'said'  => 'A clear head, brought in for two hours a week, that changes the next two years.',
-	),
-	array(
-		'name'  => 'Design',
-		'said'  => 'An eye trained over a decade, given exactly the room a Tuesday afternoon allows.',
-	),
-	array(
-		'name'  => 'Marketing',
-		'said'  => 'The campaign, the launch, the whole plan behind getting found — run by someone who has actually run one.',
-	),
-	array(
-		'name'  => 'Finance',
-		'said'  => 'Numbers held with the same care she has always held everything else — bookkeeping, BAS, the whole ledger.',
-	),
-	array(
-		'name'  => 'Education',
-		'said'  => 'What she already knows how to teach, offered to the one child — or the twenty — who need exactly that.',
-	),
-	array(
-		'name'  => 'Technology',
-		'said'  => 'The quiet architecture of things that work, built in the hours that are actually hers.',
-	),
-	array(
-		'name'  => 'Health',
-		'said'  => 'A qualification that used to sit inside someone else\'s roster — physio, OT, nutrition — now working on her own terms.',
-	),
-	array(
-		'name'  => 'Legal',
-		'said'  => 'Real qualifications — contracts, compliance, advice — without a whole firm\'s overhead attached.',
-	),
-	array(
-		'name'  => 'HR & People',
-		'said'  => 'The people expertise a growing business needs long before it can justify a whole department.',
-	),
-	array(
-		'name'  => 'Project Management',
-		'said'  => 'The one person who makes six moving parts read like a single calm plan.',
-	),
-	array(
-		'name'  => 'Copywriting',
-		'said'  => 'Words that actually sound like the business, written by someone who has done it professionally.',
-	),
-	array(
-		'name'  => 'Home',
-		'said'  => 'The organising, the styling, the making-beautiful — real skill, paid properly at last.',
-	),
-);
 ?>
-<section class="sec lode-fields">
-	<div class="in">
-		<p class="eyebrow float" style="text-align:center;">Every Field, In Full</p>
-		<h2 class="head lift float" style="text-align:center;">A Lode In Every Field.</h2>
-		<div class="lode-fields-grid">
-			<?php foreach ( $lode_fields as $lode_fi => $lode_field ) : ?>
-				<div class="lode-field-card float" style="--n: <?php echo (int) $lode_fi; ?>">
-					<span class="lode-field-name"><?php echo esc_html( $lode_field['name'] ); ?></span>
-					<p class="lode-field-said"><?php echo esc_html( $lode_field['said'] ); ?></p>
-				</div>
-			<?php endforeach; ?>
+
+<?php
+/*
+ * ── YOU'D BE AMONG THE FIRST — 4 September 2026, replacing "In Their
+ * Own Words" ──────────────────────────────────────────────────────────
+ * Her words, direct: the bottom of the homepage is "no good at all...
+ * there's just nothing." Real cause, found looking honestly rather than
+ * patching what was there: the section this replaced quoted two named
+ * people — "Rosa M.," "Aiden T." — on a site where Total profiles
+ * showing: 0. Nobody by those names exists. Her own truth law forbids a
+ * claim about a person that was never given, and an invented person is
+ * exactly that, however warm the quote reads.
+ *
+ * The honest version doesn't hide that this is new. It says so, and
+ * turns it into the actual pitch — the same reason an early booking on
+ * any real marketplace is worth more than a late one. Real for a
+ * professional (found first, before the field crowds) and real for a
+ * business (first pick, before everyone else notices too). No invented
+ * feature, no fabricated discount — just what's true about arriving
+ * early, said plainly.
+ */
+?>
+<section class="sec sec--first">
+	<div class="in first-grid">
+		<div class="first-mark" aria-hidden="true">
+			<span class="first-node first-node--a"></span>
+			<span class="first-node first-node--b"></span>
+			<span class="first-node first-node--c"></span>
+			<svg class="first-lines" viewBox="0 0 200 200" preserveAspectRatio="none">
+				<line x1="40" y1="150" x2="100" y2="50" />
+				<line x1="100" y1="50" x2="165" y2="120" />
+			</svg>
+		</div>
+		<div class="first-copy">
+			<p class="eyebrow">The Honest Part</p>
+			<h2 class="head lift">You'd Be Among The First.</h2>
+			<p class="body body--wide">Nobody's live here yet — this is that early. For a professional, it's the moment a field is easiest to be found in, before it's crowded. For a business, it's first pick of exactly who you need, before anyone else has noticed her either.</p>
+			<p class="body body--wide">Neither of those is a small thing. It's the whole difference between arriving somewhere and helping build it.</p>
 		</div>
 	</div>
 </section>
 
 <?php
 /*
- * ── IN THEIR OWN WORDS ─────────────────────────────────────────────────
- * No cards, no avatars, no gradient text. Her words lead; a real photo
- * carries the warmth the quotes alone can't. Placeholder photo — a real
- * professional's portrait replaces it the day she's real.
+ * ── HOW IT WORKS, REBUILT — 1 September 2026 ────────────────────────────
+ * Her words: "the actual website looking much better because you're
+ * very, very lazy on the website design." Fair, and specific here: this
+ * was three identical columns with a small coloured square and a
+ * number — the exact generic template pattern the mark itself is the
+ * opposite of. Numerals now carry the mark's own gradient, and a real
+ * connecting line (the same visual language as the constellation) runs
+ * beneath them, so the page's two halves finally look like one thing.
  */
 ?>
-<section class="sec sec--voices">
-	<div class="in voices-grid">
-		<div class="voices-photo">
-			<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/img/voice-photo.jpg' ); ?>" alt="">
-			<p class="voices-photo-cap">"My clients don't need me nine to five. They need me good, and on time."</p>
-		</div>
-		<div class="voices-list">
-			<p class="eyebrow">In Their Own Words</p>
-			<h2 class="voices-head">The People Already Here.</h2>
-
-			<div class="voice">
-				<span class="voice-mark"></span>
-				<p class="voice-quote">Numbers were always my thing. Now they fit around drop-off and pick-up too, and nobody asked me to shrink either one.</p>
-				<div class="voice-byline">
-					<span class="voice-name">Rosa M.</span>
-					<span class="voice-role">Bookkeeper &amp; BAS Agent, Preston</span>
-					<span class="voice-hours">9am – 2:30pm, weekdays</span>
-				</div>
-			</div>
-
-			<div class="voice">
-				<span class="voice-mark"></span>
-				<p class="voice-quote">I do the hours nap time gives me. It's enough — I checked, twice, before I believed it myself.</p>
-				<div class="voice-byline">
-					<span class="voice-name">Aiden T.</span>
-					<span class="voice-role">Graphic Designer, remote</span>
-					<span class="voice-hours">Two afternoons a week</span>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
 <section class="sec sec--steps" id="how-it-works">
 	<div class="in">
 		<p class="eyebrow float" style="text-align:center;">How It Works</p>
+		<div class="steps-track" aria-hidden="true"><span></span></div>
 		<ol class="steps">
 
 			<li class="step float">
-				<span class="step-num">1</span>
-				<h3 class="head step-head">She Builds Her Profile, Her Way</h3>
+				<span class="step-num">01</span>
+				<h3 class="head step-head">They Build Their Profile, Their Way</h3>
 				<p class="body">
-					A few honest questions about what she's brilliant at — never a form, never a résumé upload. $29 a month, first month free.
+					A few honest questions about what they're brilliant at — never a form, never a résumé upload. $29 a month, first month free.
 				</p>
 			</li>
 
 			<li class="step float">
-				<span class="step-num">2</span>
-				<h3 class="head step-head">The Right Person Finds Her</h3>
+				<span class="step-num">02</span>
+				<h3 class="head step-head">The Right Person Finds Them</h3>
 				<p class="body">
-					Households and businesses search by what they need and where they are, then book her directly.
+					Households and businesses search by what they need and where they are, then book them directly.
 				</p>
 			</li>
 
 			<li class="step float">
-				<span class="step-num">3</span>
+				<span class="step-num">03</span>
 				<h3 class="head step-head">The Work Happens, The Career Keeps Going</h3>
 				<p class="body">
 					Paid properly, held safely until the job's done, released the moment it is.
@@ -286,6 +342,27 @@ $lode_fields = array(
 		</ol>
 	</div>
 </section>
+
+<?php
+/*
+ * ── A LODE IN EVERY FIELD, BROUGHT BACK — 4 September 2026 ────────────
+ * Struck 1 September for landing right after the hero as "a wall of ten
+ * cards... boring, choice overload" — the placement was the fault, not
+ * the content, which was real and specific the whole time (kept whole in
+ * template-parts/archived-lode-fields.php rather than rewritten here).
+ * Down here, past the hero and the signpost's own choosing moment, it
+ * does a different job: proof of real breadth for someone who's already
+ * leaning in, not a wall thrown at someone who just arrived.
+ *
+ * REBUILT AS AN OPENING CLOUD RATHER THAN THE OLD FIXED GRID — <details>
+ * elements, one per field, native browser disclosure rather than any
+ * custom JS. Closed, it reads as thirteen gradient words in one line
+ * that wraps; opened, her actual one-line description shows beneath.
+ * Keyboard and screen-reader accessible by default, because that's what
+ * <details> already is.
+ */
+get_template_part( 'template-parts/archived-lode-fields' );
+?>
 
 <?php
 /*
@@ -303,8 +380,19 @@ $lode_fields = array(
 			<h2 class="head lift">She's Carrying A Lode.</h2>
 			<p class="body body--wide">Too many mothers have felt they had to choose between a career and being the one who's there. MotherLode HQ exists so that feeling gets an answer — money that's genuinely hers, earned in the hours she actually has, on terms nobody else set for her.</p>
 			<p class="body body--wide">For some, it stays two hours a day, and that's enough. For others, it's the first thread of something that becomes entirely her own — a business, a name, a life she built herself.</p>
+			<?php
+			/*
+			 * "Discover the Lode" — real conversion problem, found while
+			 * making this page actually convert: the exact same label sat
+			 * on two different buttons meaning two different things here
+			 * (build your own profile) and further down (a business
+			 * finding someone). Same words as her own destination page
+			 * (page-for-talent.php's real button), so the promise made
+			 * here is the promise kept the moment she lands.
+			 */
+			?>
 			<div class="lode-hero-ctas">
-				<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/join/' ) ); ?>">Discover the Lode <span aria-hidden="true">&rarr;</span></a>
+				<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/for-talent/' ) ); ?>">Build Your Profile <span aria-hidden="true">&rarr;</span></a>
 			</div>
 		</div>
 	</div>
@@ -326,7 +414,7 @@ $lode_fields = array(
 			<p class="body body--wide">He's often the only father in the pick-up line, and somebody has usually assumed he's minding his own children for the afternoon. He isn't. He's raising them, full stop, the same as she is.</p>
 			<p class="body body--wide">Whatever career he built before — the trade, the spreadsheet, the design work, the ten years he's actually good at — doesn't stop mattering because he's the one home now. It needs exactly what hers does: hours that fit around nap time and school pick-up, paid properly, never treated as a favour.</p>
 			<div class="lode-hero-ctas">
-				<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/join/?as=talent' ) ); ?>">Offer your expertise <span aria-hidden="true">&rarr;</span></a>
+				<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/for-talent/' ) ); ?>">Offer your expertise <span aria-hidden="true">&rarr;</span></a>
 			</div>
 		</div>
 		<div class="lode-dads-word" aria-hidden="true">
@@ -350,35 +438,36 @@ $lode_fields = array(
 <?php
 /*
  * ── PURPOSE. PASSION. POTENTIAL. POSSIBILITY. ───────────────────────────
- * Her own four words, from IMAGENIQ. 31 August, second pass — her words:
- * "you don't have to list that there... that would be lower down." Moved
- * from mid-page, right before the closing CTA now, quiet rather than
- * competing with the two Lode sections above. Copy drafted here, not
- * hers or Verity's yet.
+ * 1 September, third pass — her words: "let's weave it in a bit smaller
+ * at the bottom." Same words, same place, deliberately quiet now — a
+ * single slim line rather than a heading and a grid of cards, so it sits
+ * under everything else instead of competing with it.
+ *
+ * ── MERAKI · ENTELECHY · INOCHI · KAGAYAKI ──────────────────────────────
+ * 1 September, fourth pass — she asked for these four woven in here. Held
+ * off until now: her own standing rule is that her words go in whole or
+ * not at all, never a session's paraphrase of them, and a fragment isn't
+ * enough to build from. Read The Path To Love in full to get the real
+ * source rather than guess — each gloss below is her own exact wording
+ * from that document, not a session's summary of it.
  */
 ?>
 <section class="sec lode-four">
-	<div class="in">
-		<h2 class="head lift float" style="text-align:center;">Purpose. Passion. Potential. Possibility.</h2>
-		<p class="body body--wide float" style="text-align:center; margin-left:auto; margin-right:auto;">Every profile here carries all four.</p>
-		<div class="lode-four-grid">
-			<div class="lode-four-card float" style="--n:0">
-				<span class="lode-four-word">Purpose</span>
-				<p>The reason the work matters to her, stated plainly, never assumed on her behalf.</p>
-			</div>
-			<div class="lode-four-card float" style="--n:1">
-				<span class="lode-four-word">Passion</span>
-				<p>What she is good at because she has always loved it, not despite everything else she carries.</p>
-			</div>
-			<div class="lode-four-card float" style="--n:2">
-				<span class="lode-four-word">Potential</span>
-				<p>The client not yet found, the year not yet lived, waiting on the other side of one honest profile.</p>
-			</div>
-			<div class="lode-four-card float" style="--n:3">
-				<span class="lode-four-word">Possibility</span>
-				<p>What two hours a week becomes, given enough of them, and enough belief to start.</p>
-			</div>
-		</div>
+	<div class="in lode-four-slim">
+		<p class="lode-four-slim-line">
+			<span class="lode-four-word">Purpose</span><span class="lode-four-dot">·</span><span class="lode-four-word">Passion</span><span class="lode-four-dot">·</span><span class="lode-four-word">Potential</span><span class="lode-four-dot">·</span><span class="lode-four-word">Possibility</span>
+		</p>
+		<p class="lode-four-slim-cap">Every profile here carries all four.</p>
+
+		<p class="lode-four-slim-line lode-four-slim-line--six">
+			<span class="lode-four-word">Meraki</span><span class="lode-four-dot">·</span><span class="lode-four-word">Entelechy</span><span class="lode-four-dot">·</span><span class="lode-four-word">Inochi</span><span class="lode-four-dot">·</span><span class="lode-four-word">Kagayaki</span>
+		</p>
+		<ul class="lode-six-glosses">
+			<li><strong>Meraki</strong> — to pour your soul into what you make.</li>
+			<li><strong>Entelechy</strong> — the vehicle that turns potential into actuality.</li>
+			<li><strong>Inochi</strong> — life force.</li>
+			<li><strong>Kagayaki</strong> — radiance, the shining-out.</li>
+		</ul>
 	</div>
 </section>
 
@@ -386,8 +475,8 @@ $lode_fields = array(
 	<div class="in">
 		<h2 class="close-head">Come And See What's Waiting.</h2>
 		<div class="lode-hero-ctas" style="justify-content:center;">
-			<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/join/' ) ); ?>">Discover the Lode <span aria-hidden="true">&rarr;</span></a>
-			<a class="lode-btn lode-btn--outline" href="<?php echo esc_url( home_url( '/join/?as=talent' ) ); ?>">Offer your expertise <span aria-hidden="true">&rarr;</span></a>
+			<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/for-business/' ) ); ?>">Find Exceptional Help <span aria-hidden="true">&rarr;</span></a>
+			<a class="lode-btn lode-btn--outline" href="<?php echo esc_url( home_url( '/for-talent/' ) ); ?>">Build Your Profile <span aria-hidden="true">&rarr;</span></a>
 		</div>
 	</div>
 </section>

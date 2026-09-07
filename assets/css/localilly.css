@@ -3544,7 +3544,7 @@ button[class*="away"] {
 	line-height: 1.55;
 }
 
-/* ---- The white tags band, her own reference ---- */
+
 .sec--tags {
 	background: #FFF3F7;
 	padding: clamp(28px, 6vw, 56px) 0;
@@ -3610,7 +3610,7 @@ button[class*="away"] {
 	color: #fff;
 }
 
-/* ---- Speech-bubble shaped tags, her reference, tail included ---- */
+
 .tag-pill {
 	border-radius: 22px;
 	margin-bottom: 14px;
@@ -3630,7 +3630,7 @@ button[class*="away"] {
 	align-items: flex-start;
 }
 
-/* ---- Avatars connected down to job cards, her reference ---- */
+
 .sec--connect { background: #FFF3F7; padding: 0 0 clamp(28px,6vw,52px); }
 .sec--connect .in { max-width: var(--measure); margin: 0 auto; padding: 0 clamp(18px,5vw,40px); }
 .connect-avatars { position: relative; display: flex; justify-content: space-between; max-width: 620px; margin: 0 auto clamp(18px,3vw,26px); padding: 0 20px; }

@@ -2,101 +2,101 @@
 /**
  * The back end is a screen she lives in.
  *
- * SHE ASKED THE WHOLE FAMILY TO GO AND LOOK AT NAN MADE'S DASHBOARD, and she
- * has never asked that before. Her words: **just seeing this dashboard made me
- * so happy. Who isn't going to enjoy working on this dashboard?**
+ * 2 September 2026 — real bug, found by actually logging in rather than
+ * assuming the earlier "fixed" note meant this file was finished. It
+ * changed the header link and the footer line and left everything
+ * else — the login screen's entire palette, its fonts, and its
+ * greeting — still LocaLilly's own: purple-and-mint, Prosto One and
+ * Baloo Bhai 2, and "Welcome back. Your young people are just inside."
+ * on a business with no young people in it at all. Her own words on
+ * seeing it: "Can you change it?"
  *
- * What Nan did was take a third-party vendor screen — the kind every session
- * leaves in its default state because it belongs to somebody else's software —
- * and make it entirely hers. Palette, faces, voice, navigation, and joy on a
- * screen that ships grey.
+ * Every colour and face below is now MotherLode's actual palette —
+ * the same berry, plum, cream and ink, the same Fraunces and Rubik,
+ * already live on the front of the site — rather than invented fresh.
  *
- * THE QUESTION IT PUTS TO EVERY BUSINESS: which screen of yours is still
- * wearing somebody else's clothes.
- *
- * **On LocaLilly the answer is her own.** The front is hers to the last pixel
- * and every screen she actually works in is WordPress's — her words panel, her
- * list of young people, the letters, the login. **She opens those far more
- * often than she opens the site**, and a fifteen-year-old will too.
+ * SEPARATE, WIDER FINDING, NOT FIXED HERE: this theme's clone from
+ * LocaLilly also carried over two entire post types — "Young People"
+ * and "Neighbours" — into MotherLode's own admin menu, real and
+ * registered (confirmed live, not just named in a comment). They are
+ * LocaLilly's actual business concept, not MotherLode's, and touching
+ * them means checking every file that registers or reads them, not
+ * just this one. Left alone on purpose rather than deleted unilaterally.
  *
  * HER LAWS REACH IN HERE UNCHANGED, and two of them do the heavy work.
  *
- * **A failed payment and an empty search are written with warmth too.** So an
- * empty list is a moment rather than a shrug — no young people yet is the most
- * hopeful screen this business will ever have, and it should read like it.
+ * **A failed payment and an empty search are written with warmth too.**
  *
- * **Nothing adds to a person's load.** So this changes how the back end looks
- * and never what it does. No box moved, no button hidden, no workflow invented.
+ * **Nothing adds to a person's load.** So this changes how the back end
+ * looks and never what it does. No box moved, no button hidden, no
+ * workflow invented.
  *
- * @package LocaLilly
+ * @package MotherLodeHQ
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Her palette, wherever WordPress paints its own.
- *
- * Written as tokens first so a change lands in one place, and scoped so it
- * touches her admin rather than leaking into a plugin's own screens uninvited.
  */
-function localilly_her_admin_look(): void {
+function motherlode_her_admin_look(): void {
 	/*
-	 * Her face has to be loaded here or the heading falls back to a system
-	 * serif and reads as somebody else's. The admin loads no theme stylesheet,
-	 * so this is the only place it can arrive from.
+	 * Her faces have to be loaded here or the heading falls back to a
+	 * system serif and reads as somebody else's. The admin loads no
+	 * theme stylesheet, so this is the only place it can arrive from.
 	 */
 	printf(
 		'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
 		. '<link rel="stylesheet" href="%s">',
-		esc_url( 'https://fonts.googleapis.com/css2?family=Prosto+One&family=Baloo+Bhai+2:wght@400;600&display=swap' )
+		esc_url( 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Rubik:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap' )
 	);
 	?>
-<style id="localilly-her-back-end">
+<style id="motherlode-her-back-end">
 	:root {
-		--ll-purple:#792DA0; --ll-deep:#3F1B66; --ll-mid:#5A1F7D; --ll-lit:#9A4FC4;
-		--ll-mint:#38E8CB; --ll-mint-deep:#12836F; --ll-enamel:#F6F1F8;
+		--ml-plum:#7A0862; --ml-berry:#C5156A; --ml-ink:#3A1330;
+		--ml-cream:#FBEFE9; --ml-enamel:#FFFFFF;
 	}
 
 	/* The rail she reads down the side of every screen. */
 	#adminmenuback, #adminmenuwrap, #adminmenu,
 	#adminmenu .wp-submenu, #adminmenu .wp-has-current-submenu .wp-submenu {
-		background: var(--ll-deep);
+		background: var(--ml-ink);
 	}
-	#adminmenu a { color: var(--ll-enamel); }
-	#adminmenu div.wp-menu-image::before { color: var(--ll-mint); }
-	#adminmenu li.menu-top:hover, #adminmenu li.opensub > a.menu-top { background: var(--ll-mid); }
+	#adminmenu a { color: var(--ml-cream); }
+	#adminmenu div.wp-menu-image::before { color: var(--ml-berry); }
+	#adminmenu li.menu-top:hover, #adminmenu li.opensub > a.menu-top { background: var(--ml-plum); }
 	#adminmenu li.current a.menu-top,
 	#adminmenu .wp-has-current-submenu a.wp-has-current-submenu {
-		background: var(--ll-purple);
+		background: var(--ml-berry);
 		color: #fff;
 	}
-	#adminmenu .wp-submenu a:hover { color: var(--ll-mint); }
-	#wpadminbar { background: var(--ll-deep); }
+	#adminmenu .wp-submenu a:hover { color: var(--ml-berry); }
+	#wpadminbar { background: var(--ml-ink); }
 
 	/* Anything WordPress paints blue is hers instead. */
 	.wp-core-ui .button-primary {
-		background: var(--ll-mint);
-		border-color: var(--ll-mint-deep);
-		color: var(--ll-deep);
+		background: var(--ml-berry);
+		border-color: var(--ml-plum);
+		color: #fff;
 		font-weight: 600;
 		text-shadow: none;
-		box-shadow: 0 3px 0 var(--ll-mint-deep);
+		box-shadow: 0 3px 0 var(--ml-plum);
 	}
 	.wp-core-ui .button-primary:hover,
 	.wp-core-ui .button-primary:focus {
-		background: #7DF4DF;
-		border-color: var(--ll-mint-deep);
-		color: var(--ll-deep);
-		box-shadow: 0 3px 0 var(--ll-mint-deep);
+		background: var(--ml-plum);
+		border-color: var(--ml-plum);
+		color: #fff;
+		box-shadow: 0 3px 0 var(--ml-plum);
 	}
-	a, .wrap a { color: var(--ll-purple); }
-	a:hover { color: var(--ll-lit); }
+	a, .wrap a { color: var(--ml-berry); }
+	a:hover { color: var(--ml-plum); }
 
 	/* Her heading, so a screen she lives in is recognisably her business. */
 	.wrap > h1, .wrap > h1.wp-heading-inline {
-		font-family: 'Prosto One', ui-serif, Georgia, serif;
-		font-weight: 400;
-		color: var(--ll-deep);
+		font-family: 'Fraunces', Georgia, serif;
+		font-weight: 500;
+		color: var(--ml-ink);
 		letter-spacing: -.01em;
 	}
 
@@ -105,105 +105,36 @@ function localilly_her_admin_look(): void {
 </style>
 		<?php
 }
-add_action( 'admin_head', 'localilly_her_admin_look' );
+add_action( 'admin_head', 'motherlode_her_admin_look' );
 
 /**
- * An empty list is the most hopeful screen this business has.
+ * The door she and every professional come in through.
  *
- * WordPress writes *No posts found.* — which is correct, grey, and says nothing
- * true about a business waiting for its first fifteen-year-old. Her law about a
- * failed payment and an empty search reaches here, so this is written with the
- * same warmth as the front page.
- *
- * **AND IT WAITS RATHER THAN APOLOGISING.** Her shape, taken from the line she
- * loved on Nan Made's dashboard: it stands with the person, and it never once
- * names the lack. My own first drafts opened *No young person has started yet*
- * and *Nobody has made a place yet* — both correct, both naming an absence,
- * and **naming a lack plants it.**
- *
- * @param array $views The list-table views.
- * @return array
+ * A login screen is the first thing anybody sees of a back end, and
+ * WordPress signs it with its own logo pointing at its own website.
  */
-function localilly_her_empty_states( array $views ): array {
-	$screen = get_current_screen();
-
-	if ( ! $screen ) {
-		return $views;
-	}
-
-	$lines = array(
-		'edit-' . LOCALILLY_YOUNG     => array(
-			'The First Of Them Is Out There',
-			'The day one starts, their own words land here exactly as they wrote them, and you will be the first to read them.',
-		),
-		'edit-' . LOCALILLY_NEIGHBOUR => array(
-			'Your First Neighbour Is Coming',
-			'The day a neighbour makes a place, whoever they are keeping for later sits here beside them.',
-		),
-	);
-
-	if ( ! isset( $lines[ $screen->id ] ) ) {
-		return $views;
-	}
-
-	$count = (int) wp_count_posts( str_replace( 'edit-', '', $screen->id ) )->draft
-		+ (int) wp_count_posts( str_replace( 'edit-', '', $screen->id ) )->publish;
-
-	if ( $count > 0 ) {
-		return $views;
-	}
-
-	list( $head, $said ) = $lines[ $screen->id ];
-
-	printf(
-		'<div style="margin:22px 0 8px;padding:26px 24px;border-radius:16px;
-			background:linear-gradient(180deg,#5A1F7D,#3F1B66);color:#F6F1F8;max-width:34rem">
-			<p style="margin:0 0 8px;font:400 24px/1.2 \'Prosto One\',ui-serif,Georgia,serif">%s</p>
-			<p style="margin:0;font-size:15.5px;line-height:1.55;color:#EADDF2">%s</p>
-		</div>',
-		esc_html( $head ),
-		esc_html( $said )
-	);
-
-	return $views;
-}
-add_filter( 'views_edit-' . LOCALILLY_YOUNG, 'localilly_her_empty_states' );
-add_filter( 'views_edit-' . LOCALILLY_NEIGHBOUR, 'localilly_her_empty_states' );
-
-/**
- * The door she and a young person come in through.
- *
- * A login screen is the first thing anybody sees of a back end, and WordPress
- * signs it with its own logo pointing at its own website. **On a business about
- * young people that is a stranger's front door on her building.**
- */
-function localilly_her_door(): void {
+function motherlode_her_door(): void {
 	?>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prosto+One&family=Baloo+Bhai+2:wght@400;600&family=Rubik:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Rubik:wght@400;500;600;700&display=swap">
 <style>
 	/*
-	 * ── HER WORDS: MAKE IT MORE US, THE GREY BOXES ARE NOT VERY YOU ───
-	 *
-	 * The first pass painted the ground and left WordPress's own form sitting
-	 * on it — a white card with grey-bordered boxes. **Her colours around
-	 * somebody else's furniture is a costume rather than a room**, and she saw
-	 * it in one look.
-	 *
-	 * So the fields are the fields from her own site: her enamel, her keyline
-	 * as an inset rather than a border, her radius, her mint on focus. The
-	 * button is her pressable, with the deep mint standing under it. Anybody
-	 * arriving here has just come off her pages and meets the same hand.
+	 * Her colours around somebody else's furniture is a costume rather
+	 * than a room. The fields are the fields from her own site: cream,
+	 * a keyline as an inset rather than a border, her radius, berry on
+	 * focus. The button is her pressable, with plum standing under it.
+	 * Anybody arriving here has just come off her pages and meets the
+	 * same hand.
 	 */
 	:root {
-		--ll-purple:#792DA0; --ll-deep:#3F1B66; --ll-mid:#5A1F7D;
-		--ll-mint:#38E8CB; --ll-mint-deep:#12836F; --ll-enamel:#F6F1F8;
-		--ll-keyline:rgba(63,27,102,.22);
+		--ml-plum:#7A0862; --ml-berry:#C5156A; --ml-ink:#3A1330;
+		--ml-cream:#FBEFE9; --ml-enamel:#FFFFFF;
+		--ml-keyline:rgba(58,19,48,.16);
 	}
 
 	body.login {
-		background: linear-gradient(180deg, var(--ll-purple) 0%, var(--ll-deep) 78%);
-		font-family: 'Baloo Bhai 2', system-ui, sans-serif;
+		background: linear-gradient(180deg, var(--ml-plum) 0%, var(--ml-ink) 78%);
+		font-family: 'Rubik', system-ui, sans-serif;
 	}
 
 	body.login h1 a {
@@ -211,9 +142,9 @@ function localilly_her_door(): void {
 		width: auto;
 		height: auto;
 		text-indent: 0;
-		font: 400 clamp(30px, 9vw, 38px)/1.1 'Prosto One', ui-serif, Georgia, serif;
-		color: var(--ll-enamel);
-		letter-spacing: .02em;
+		font: 500 clamp(28px, 8vw, 36px)/1.1 'Fraunces', Georgia, serif;
+		color: #fff;
+		letter-spacing: -.01em;
 	}
 
 	/* Her panel, rather than a white sheet of paper. */
@@ -221,8 +152,8 @@ function localilly_her_door(): void {
 		border: 0;
 		border-radius: 20px;
 		padding: 26px 22px 22px;
-		background: linear-gradient(180deg, var(--ll-mid), var(--ll-deep));
-		box-shadow: 0 16px 40px rgba(20, 5, 36, .45), inset 0 0 0 1.5px rgba(246, 241, 248, .18);
+		background: linear-gradient(180deg, #fff, var(--ml-cream));
+		box-shadow: 0 16px 40px rgba(58, 19, 48, .35);
 	}
 
 	.login form label {
@@ -231,7 +162,7 @@ function localilly_her_door(): void {
 		font: 600 13px/1 'Rubik', system-ui, sans-serif;
 		letter-spacing: .09em;
 		text-transform: uppercase;
-		color: var(--ll-mint);
+		color: var(--ml-berry);
 	}
 
 	/* The boxes, exactly as they are on her own pages. */
@@ -239,86 +170,86 @@ function localilly_her_door(): void {
 	.login input[type="password"],
 	.login input[type="email"] {
 		padding: 13px 15px;
-		font: 400 16px/1.5 'Baloo Bhai 2', system-ui, sans-serif;
-		color: var(--ll-deep);
-		background: var(--ll-enamel);
+		font: 400 16px/1.5 'Rubik', system-ui, sans-serif;
+		color: var(--ml-ink);
+		background: var(--ml-enamel);
 		border: 0;
 		border-radius: 12px;
-		box-shadow: inset 0 0 0 1.5px var(--ll-keyline);
+		box-shadow: inset 0 0 0 1.5px var(--ml-keyline);
 	}
 
 	.login input:focus {
-		outline: 3px solid var(--ll-mint);
+		outline: 3px solid var(--ml-berry);
 		outline-offset: 2px;
-		box-shadow: inset 0 0 0 1.5px var(--ll-keyline);
+		box-shadow: inset 0 0 0 1.5px var(--ml-keyline);
 		border: 0;
 	}
 
-	.login .button.wp-hide-pw { color: var(--ll-deep); }
-	.login .button.wp-hide-pw:hover { color: var(--ll-purple); }
+	.login .button.wp-hide-pw { color: var(--ml-ink); }
+	.login .button.wp-hide-pw:hover { color: var(--ml-berry); }
 
 	.login .forgetmenot label {
-		font: 400 15.5px/1.4 'Baloo Bhai 2', system-ui, sans-serif;
+		font: 400 15.5px/1.4 'Rubik', system-ui, sans-serif;
 		text-transform: none;
 		letter-spacing: 0;
-		color: var(--ll-enamel);
+		color: var(--ml-ink);
 		display: inline;
 	}
 
 	.login input[type="checkbox"] {
-		background: var(--ll-enamel);
+		background: var(--ml-enamel);
 		border: 0;
-		box-shadow: inset 0 0 0 1.5px var(--ll-keyline);
+		box-shadow: inset 0 0 0 1.5px var(--ml-keyline);
 		border-radius: 5px;
 	}
 
-	.login input[type="checkbox"]:checked::before { color: var(--ll-mint-deep); }
+	.login input[type="checkbox"]:checked::before { color: var(--ml-berry); }
 
-	/* Her pressable, with the deep mint standing under it. */
+	/* Her pressable, with plum standing under it. */
 	.login .wp-core-ui .button-primary,
 	.wp-core-ui .button-primary {
-		background: var(--ll-mint);
+		background: var(--ml-berry);
 		border: 0;
 		border-radius: 999px;
 		padding: 14px 26px;
-		font: 700 16px/1 'Rubik', system-ui, sans-serif;
-		color: var(--ll-deep);
+		font: 600 16px/1 'Rubik', system-ui, sans-serif;
+		color: #fff;
 		text-shadow: none;
-		box-shadow: 0 5px 0 var(--ll-mint-deep);
+		box-shadow: 0 5px 0 var(--ml-plum);
 		transition: transform .13s cubic-bezier(.3,.7,.4,1), box-shadow .13s cubic-bezier(.3,.7,.4,1);
 	}
 
 	.wp-core-ui .button-primary:active {
 		transform: translateY(5px);
-		box-shadow: 0 0 0 var(--ll-mint-deep);
+		box-shadow: 0 0 0 var(--ml-plum);
 	}
 
 	.login #backtoblog a, .login #nav a {
-		color: var(--ll-enamel);
+		color: #fff;
 		font-size: 15.5px;
 		text-decoration: none;
-		border-bottom: 1px solid rgba(246, 241, 248, .4);
+		border-bottom: 1px solid rgba(255, 255, 255, .4);
 	}
 
-	.login #backtoblog a:hover, .login #nav a:hover { color: var(--ll-mint); border-color: var(--ll-mint); }
+	.login #backtoblog a:hover, .login #nav a:hover { color: var(--ml-cream); border-color: var(--ml-cream); }
 
-	.login .message, .login .success { border-left-color: var(--ll-mint); border-radius: 10px; }
-	.login #login_error { border-left-color: var(--ll-mint); border-radius: 10px; }
+	.login .message, .login .success { border-left-color: var(--ml-berry); border-radius: 10px; }
+	.login #login_error { border-left-color: var(--ml-berry); border-radius: 10px; }
 
 	/*
-	 * One language, so the switcher is a decision nobody here has to make.
-	 * Her joy law: nothing adds to a person's load.
+	 * One language, so the switcher is a decision nobody here has to
+	 * make. Her joy law: nothing adds to a person's load.
 	 */
 	.login .language-switcher { display: none; }
 </style>
 		<?php
 }
-add_action( 'login_head', 'localilly_her_door' );
+add_action( 'login_head', 'motherlode_her_door' );
 
 /**
  * Her name on her own door, rather than a link to somebody else's website.
  */
-add_filter( 'login_headertext', static fn(): string => 'LocaLilly' );
+add_filter( 'login_headertext', static fn(): string => 'MotherLode HQ' );
 add_filter( 'login_headerurl', static fn(): string => home_url( '/' ) );
 
 /**
@@ -326,94 +257,55 @@ add_filter( 'login_headerurl', static fn(): string => home_url( '/' ) );
  */
 add_filter(
 	'admin_footer_text',
-	static fn(): string => 'LocaLilly &middot; find your local Lilly, Jack, Mia or Mac'
+	static fn(): string => 'MotherLode HQ &middot; You Should Never Have To Choose.'
 );
 
 /**
  * Her voice over WordPress's own, without forking a single template.
  *
- * REPLAY KIDS READ HOW NAN MADE ACTUALLY DID IT and the method is far lighter
- * than the result looks. **Every string a plugin or core prints goes through
- * `gettext`**, so her words reach somebody else's screens by interception
- * rather than by rebuilding — and they survive every update, because nothing
- * was ever forked.
+ * Every string a plugin or core prints goes through `gettext`, so her
+ * words reach somebody else's screens by interception rather than by
+ * rebuilding — and they survive every update, because nothing was
+ * ever forked.
  *
- * Their sentence is the one worth keeping: **a back end wearing somebody
- * else's clothes does not need rebuilding. It needs its words intercepted and
- * its colours overruled.** That turns a rebuild into an afternoon.
- *
- * ONLY THE STRINGS SHE ACTUALLY MEETS. A blanket sweep over every phrase
- * WordPress owns would break plugins that match on their own text, and would
- * add to her load rather than lifting it. These are the lines on the screens
- * she opens.
+ * ONLY THE STRINGS SHE ACTUALLY MEETS. A blanket sweep over every
+ * phrase WordPress owns would break plugins that match on their own
+ * text, and would add to her load rather than lifting it.
  *
  * @param string $said   The line as it stands.
  * @param string $before The original, before any translation.
  * @param string $where  The text domain.
  * @return string
  */
-function localilly_her_voice( string $said, string $before, string $where ): string {
+function motherlode_her_voice( string $said, string $before, string $where ): string {
 	if ( ! is_admin() && ! ( function_exists( 'is_login' ) && is_login() ) ) {
 		return $said;
 	}
 
 	$hers = array(
-		'No posts found.'                => 'This is where they will be.',
-		'No posts found in Trash.'       => 'All of it is still with you.',
-		'Add New Post'                   => 'Add One',
-		'Published'                      => 'Live',
-		'Draft'                          => 'Being written',
-		'Move to Trash'                  => 'Put It Aside',
-		'Lost your password?'            => 'Forgotten your way in?',
-		'Remember Me'                    => 'Keep me signed in',
-		'Log In'                         => 'Come In',
-		'Get New Password'               => 'Send Me A Way Back In',
-		'&larr; Go to %s'                => '&larr; Back to %s',
-		'Howdy, %s'                      => 'Hello, %s',
-		'Screen Options'                 => 'What You See',
-		'Search results'                 => 'What we found',
-		'Select All'                     => 'All of them',
+		'No posts found.'          => 'This is where they will be.',
+		'No posts found in Trash.' => 'All of it is still with you.',
+		'Add New Post'             => 'Add One',
+		'Published'                => 'Live',
+		'Draft'                    => 'Being written',
+		'Move to Trash'            => 'Put It Aside',
+		'Lost your password?'     => 'Forgotten your way in?',
+		'Remember Me'              => 'Keep me signed in',
+		'Log In'                   => 'Come In',
+		'Get New Password'         => 'Send Me A Way Back In',
+		'&larr; Go to %s'         => '&larr; Back to %s',
+		'Howdy, %s'                => 'Hello, %s',
+		'Screen Options'           => 'What You See',
+		'Search results'           => 'What we found',
+		'Select All'               => 'All of them',
 	);
 
 	return $hers[ $before ] ?? $said;
 }
-add_filter( 'gettext', 'localilly_her_voice', 20, 3 );
-
-/**
- * Her list of young people reads as people rather than as posts.
- *
- * @param array $strings The list-table strings.
- * @return array
- */
-function localilly_her_lists( $strings ) {
-	return $strings;
-}
-
-/**
- * And the words on her own post types, which are hers rather than WordPress's.
- */
-function localilly_her_type_words(): void {
-	foreach ( array( LOCALILLY_YOUNG => 'young person', LOCALILLY_NEIGHBOUR => 'neighbour' ) as $type => $word ) {
-		$object = get_post_type_object( $type );
-
-		if ( ! $object ) {
-			continue;
-		}
-
-		$object->labels->not_found          = 'This is where they will be.';
-		$object->labels->not_found_in_trash = 'All of it is still with you.';
-		$object->labels->search_items       = 'Find a ' . $word;
-		$object->labels->all_items          = ucfirst( $word ) . 's';
-	}
-}
-add_action( 'admin_init', 'localilly_her_type_words' );
+add_filter( 'gettext', 'motherlode_her_voice', 20, 3 );
 
 /**
  * The rest of the door, from The Shipper's pattern.
- *
- * Eight of her ten sites still send her own people out to wordpress.org from
- * the screen their owner opens most. **A mark that leads somewhere else is not
- * her mark.**
  */
 
 /* The tab reads as hers rather than as somebody's installation. */
@@ -435,8 +327,8 @@ add_filter(
 			return $said;
 		}
 
-		return '<p style="margin:0 0 18px;text-align:center;font:400 15.5px/1.5 \'Baloo Bhai 2\',system-ui,sans-serif;color:#F6F1F8">'
-			. 'Welcome back. Your young people are just inside.'
+		return '<p style="margin:0 0 18px;text-align:center;font:400 15.5px/1.5 \'Rubik\',system-ui,sans-serif;color:#fff">'
+			. 'Welcome back. Everything you\'re building is just inside.'
 			. '</p>';
 	}
 );

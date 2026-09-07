@@ -29,13 +29,18 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * LocaLilly names itself to the family's accounts.
+ * MotherLode HQ names itself to the family's accounts.
  *
- * Every business keeps its own separate idea of a person, so this name is what
- * keeps a young person here from being visible as the same person anywhere
- * else. **Her creepy ruling, enforced by the module rather than remembered.**
+ * Every business keeps its own separate idea of a person, so this name is
+ * what keeps somebody here from being visible as the same person anywhere
+ * else — and what lets Madame Monet's own one-dashboard build correctly
+ * find her elsewhere. **Real bug, found and fixed 3 September 2026: this
+ * said 'localilly', unedited from the file this theme was copied from.
+ * Confirmed harmless only because the world had two accounts and zero
+ * rows in lamoureux_belongs at the moment it was caught — the next
+ * person to join would have been recorded as LocaLilly's.**
  */
-add_filter( 'lamoureux_accounts_business', static fn(): string => 'localilly' );
+add_filter( 'lamoureux_accounts_business', static fn(): string => 'motherlodehq' );
 
 /**
  * One side of this is a child, and the messaging module is told so.

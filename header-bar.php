@@ -34,8 +34,15 @@ if ( $lode_verified ) {
 			<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/img/motherlode-logo.png' ); ?>" alt="MotherLode HQ" width="900" height="600" fetchpriority="high" decoding="async">
 		</a>
 		<nav class="lode-nav" aria-label="Primary">
-			<a href="<?php echo esc_url( home_url( '/#for-business' ) ); ?>">For business</a>
-			<a href="<?php echo esc_url( home_url( '/#for-talent' ) ); ?>">For talent</a>
+			<?php
+			/*
+			 * 1 September 2026 — real bug: these pointed at #for-business
+			 * and #for-talent anchors that never existed anywhere on the
+			 * page. Real pages now.
+			 */
+			?>
+			<a href="<?php echo esc_url( home_url( '/for-business/' ) ); ?>">For business</a>
+			<a href="<?php echo esc_url( home_url( '/for-talent/' ) ); ?>">For talent</a>
 			<a href="<?php echo esc_url( home_url( '/#how-it-works' ) ); ?>">How it works</a>
 			<?php if ( $lode_verified ) : ?>
 				<a class="lode-nav-join" href="<?php echo esc_url( home_url( '/your-place/' ) ); ?>"><?php echo wp_kses_post( $lode_account_label ); ?></a>

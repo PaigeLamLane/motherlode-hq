@@ -25,24 +25,27 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Who a letter comes from.
  *
- * **Her own address, confirmed by her in writing on 23 August 2026** —
- * lilly@localilly.com.au, Lilly with a Y, matching her own line on the site.
- *
- * A mailbox she has named is a mailbox she intends. **Whether it exists and
- * receives is a separate fact**, and only a letter arriving proves it. Until
- * one has, treat every send from here as unproven rather than working.
+ * 1 September 2026 — real bug, found on a sweep for leftover LocaLilly
+ * branding: this theme was cloned from LocaLilly's, and every letter
+ * MotherLode HQ sends was still going out as LocaLilly, from LocaLilly's
+ * own confirmed mailbox — lilly@localilly.com.au. Left the sender
+ * address alone rather than guess a replacement: her rule on a
+ * credential or a confirmed fact is the same rule as a password — I
+ * don't invent one. MotherLode HQ needs its own sending address
+ * confirmed by her (and set up with Postmark, per this business's own
+ * CLAUDE.md) before this filter can point at it correctly. Until then
+ * this is flagged, not fixed, and outgoing mail should be treated as
+ * unproven for this business the same way it was for LocaLilly.
  */
-add_filter( 'lamoureux_touchpoints_from', static fn(): string => 'lilly@localilly.com.au' );
-add_filter( 'lamoureux_touchpoints_from_name', static fn(): string => 'LocaLilly' );
+add_filter( 'lamoureux_touchpoints_from_name', static fn(): string => 'MotherLode HQ' );
 
 /**
- * The house a LocaLilly letter is written on.
+ * The house a MotherLode HQ letter is written on.
  *
- * Her palette, with one rule from the module obeyed rather than argued with:
- * **ink is always dark and paper is always pale**, so every word survives a
- * mail client that drops the backgrounds. Her deep purple on her enamel does
- * exactly that, and her mint is the accent rather than the ink — mint on pale
- * paper would fail the module's own contrast refusal, and it would be right to.
+ * Her actual confirmed palette for this business (the same tokens used
+ * throughout style.css), not LocaLilly's purple — ink always dark, paper
+ * always pale, so every word survives a mail client that drops the
+ * background, same rule the module insists on either way.
  */
 add_filter(
 	'lamoureux_touchpoints_house',
@@ -50,14 +53,14 @@ add_filter(
 		return array_merge(
 			$house,
 			array(
-				'name'   => 'LocaLilly',
-				'paper'  => '#F6F1F8',
-				'outer'  => '#EDE4F2',
+				'name'   => 'MotherLode HQ',
+				'paper'  => '#FDF2F5',
+				'outer'  => '#F6E3E9',
 				'panel'  => '#FFFFFF',
-				'ink'    => '#3F1B66',
-				'accent' => '#792DA0',
+				'ink'    => '#3D0836',
+				'accent' => '#EF1763',
 				'crest'  => '🌿',
-				'foot'   => 'LocaLilly · find your local Lilly, Jack, Mia or Mac',
+				'foot'   => 'MotherLode HQ · You Should Never Have To Choose.',
 			)
 		);
 	}

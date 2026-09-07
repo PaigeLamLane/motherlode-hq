@@ -81,20 +81,31 @@ function localilly_register_the_book(): void {
 add_action( 'init', 'localilly_register_the_book' );
 
 /**
- * The eight, and the words she uses for them.
+ * Real bug, found on a self-audit, 3 September 2026: this returned
+ * LocaLilly's own categories — Lawn Mowing, Babysitting, Car Washing —
+ * on MotherLode's own live /join/ page, the one page in this whole
+ * cluster of leftover LocaLilly templates that's actually published
+ * and linked from the main nav. Anyone typing a real category into a
+ * search here (Design, Finance, Admin) would never match, because
+ * nothing on this list was ever MotherLode's. Replaced with the same
+ * nine categories already live in the LODE mark's own constellation.
+ * Kept the function's old name (still called from several other,
+ * unpublished LocaLilly templates in this theme that nothing links to)
+ * rather than rename it everywhere for a set of pages nobody can reach.
  *
  * @return array<string, string>
  */
 function localilly_the_eight(): array {
 	return array(
-		'lawn-mowing'         => 'Lawn Mowing',
-		'elder-companions'    => 'Elder Companions',
-		'party-help'          => 'Party Help',
-		'yard-work'           => 'Yard Work',
-		'car-washing'         => 'Car Washing',
-		'cleaning-organising' => 'Cleaning &amp; Organising',
-		'tutoring'            => 'Tutoring',
-		'babysitting'         => 'Babysitting',
+		'strategy'   => 'Strategy',
+		'design'     => 'Design',
+		'finance'    => 'Finance',
+		'marketing'  => 'Marketing',
+		'admin'      => 'Admin',
+		'wellbeing'  => 'Wellbeing',
+		'home'       => 'Home',
+		'education'  => 'Education',
+		'technology' => 'Technology',
 	);
 }
 
