@@ -135,6 +135,14 @@ if ( ! function_exists( 'localilly_close_the_user_list' ) ) {
 require_once get_stylesheet_directory() . '/inc/never-cached-while-building.php';
 
 /**
+ * Any page carrying the Atelier is never cached — found live, 8 September
+ * 2026: a real answer was kept and the person was shown their first
+ * question again anyway, because the cache never checked. See the file's
+ * own docblock for what was actually proven.
+ */
+require_once get_stylesheet_directory() . '/inc/atelier-never-cached.php';
+
+/**
  * The three faces, each with one job.
  *
  * Abril Fatface is the plate — a heavy Didone that can carry a cast-letter
@@ -386,15 +394,27 @@ function motherlode_atelier_drafts( array $drafts, string $atelier ): array {
 			'because' => 'This is the one line a business or household searching for exactly you will read first.',
 			'order'   => 10,
 		),
+		/*
+		 * 8 September 2026 — reworked for shape, not meaning. Six of these
+		 * seven questions opened with "What", which is her own named fault
+		 * ("seven questions all opening 'what is' is a questionnaire however
+		 * well each one is written, and a person feels it by the third") —
+		 * felt by the third screen here too. Same information asked for,
+		 * different grammatical shape on each screen: a plain command, an
+		 * unfinished sentence to complete, a where, a tell-us, a where-back,
+		 * a sentence-completion close. Also fixed 'struggling', which
+		 * defaulted to "herself" on a world that deliberately does not
+		 * exclude men.
+		 */
 		'rate'       => array(
 			'key'     => 'rate',
-			'asks'    => 'What do you charge?',
+			'asks'    => 'Name your rate.',
 			'because' => "Read on your profile before the first message arrives, so nobody has to ask and nobody haggles.",
 			'order'   => 20,
 		),
 		'hours'      => array(
 			'key'     => 'hours',
-			'asks'    => 'What hours are actually yours?',
+			'asks'    => 'The hours that are actually yours are…',
 			'because' => "The ones that fit around drop-off, nap time, school pick-up — whatever's real for you, not a nine-to-five you don't have.",
 			'order'   => 30,
 		),
@@ -414,20 +434,20 @@ function motherlode_atelier_drafts( array $drafts, string $atelier ): array {
 		 */
 		'name'       => array(
 			'key'     => 'name',
-			'asks'    => "What's your name?",
+			'asks'    => 'Tell us your name.',
 			'because' => 'So the businesses reading your profile know who they\'re about to write to.',
 			'order'   => 42,
 		),
 		'email'      => array(
 			'key'     => 'email',
-			'asks'    => "What's the best email for you?",
+			'asks'    => 'Where can we write back to you?',
 			'because' => "We'll send you a copy of everything you've told us, and this is how the right people reach you.",
 			'order'   => 44,
 		),
 		'struggling' => array(
 			'key'     => 'struggling',
-			'asks'    => "What's the one thing making this feel hard to start?",
-			'because' => 'Answer this one honestly. It usually turns out to be the exact thing that makes the right person recognise herself in you.',
+			'asks'    => 'The one thing making this feel hard to start is…',
+			'because' => 'Answer this one honestly. It usually turns out to be the exact thing that makes the right person recognise themselves in you.',
 			'order'   => 50,
 			'the_one' => true,
 		),

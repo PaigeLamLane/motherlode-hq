@@ -72,8 +72,18 @@ get_header();
 
 <section class="sec sec--close">
 	<div class="in">
-		<h2 class="close-head">Tell Us What You Need. We'll Show You Who's Already There.</h2>
-		<p class="body body--wide" style="margin:0 auto 1.6rem;text-align:center;">No job board to trawl, no agency fee. Search by what you need and where you are.</p>
+		<!--
+			8 September 2026 — her law, direct: "We invite. We welcome. We
+			talk with kindness always... Tell Her What You Need — that's
+			horrible." This heading was the exact shape she named as the
+			failure — found walking the site rather than told to fix it.
+			Reworked to her own approved pattern: a question rather than an
+			instruction ("What are you hoping for?", not "What are you
+			after?"), and the subhead no longer repeats "what you need" a
+			second time in the same section.
+		-->
+		<h2 class="close-head">What Are You Hoping To Find? We'll Show You Who's Already There.</h2>
+		<p class="body body--wide" style="margin:0 auto 1.6rem;text-align:center;">No job board to trawl, no agency fee — just the person already doing exactly this, found in a minute.</p>
 		<div class="lode-hero-ctas" style="justify-content:center;">
 			<a class="lode-btn lode-btn--dark" href="<?php echo esc_url( home_url( '/store-listing/' ) ); ?>">Find Exceptional Help <span aria-hidden="true">&rarr;</span></a>
 			<a class="lode-btn lode-btn--outline" href="<?php echo esc_url( home_url( '/for-talent/' ) ); ?>">I'm Looking To Offer Expertise Instead <span aria-hidden="true">&rarr;</span></a>
