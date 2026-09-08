@@ -58,9 +58,17 @@ $lode_mark_nodes = array(
 		'color' => '#FC0E1D',
 	),
 	array(
+		/*
+		 * 8 September 2026 -- real bug, found by actually looking at
+		 * the live mark on a phone: at (215, 225) the word sat
+		 * straight across the O, unreadable against it. Moved into
+		 * the real gap between the L and the O -- the dot barely
+		 * moves, the web of lines is untouched, only where the word
+		 * itself lands has changed.
+		 */
 		'label' => 'Marketing',
-		'x'     => 215,
-		'y'     => 225,
+		'x'     => 145,
+		'y'     => 165,
 		'align' => 'start',
 		'color' => '#F43775',
 	),
