@@ -515,6 +515,55 @@ function motherlode_atelier_finished( string $atelier, array $said ): void {
 add_action( 'lamoureux_atelier_finished', 'motherlode_atelier_finished', 10, 2 );
 
 /**
+ * The letter above was wired to the wrong moment — real, live, found by
+ * walking the sitting end to end, 8 September 2026.
+ *
+ * `lamoureux_atelier_finished` only ever fires when a business has told the
+ * shared plugin to skip its own read-back screen
+ * (`lamoureux_atelier_gives_an_ending` returned false). MotherLode never
+ * sets that filter, so every real sitting here shows the ordinary "Here is
+ * what you said" page and ends with her pressing "This Is Right" — which
+ * fires `lamoureux_atelier_she_is_happy` instead. Nothing was broken by the
+ * port fix tonight; the confirmation letter above has never fired for a
+ * real completed profile, on any world state, because it was listening for
+ * an action this atelier's own configuration never reaches.
+ *
+ * Confirmed by walking the real form as a stranger, six real answers, a
+ * real "This Is Right" press — the read-back page rendered correctly and no
+ * letter followed it, on either action, until this was added.
+ *
+ * @param string $sitting Which sitting just confirmed.
+ * @param string $atelier Which atelier.
+ */
+function motherlode_atelier_confirmed( string $sitting, string $atelier ): void {
+	if ( 'motherlode-profile' !== $atelier || ! class_exists( 'Lamoureux_Atelier_Answers' ) ) {
+		return;
+	}
+
+	// Never twice for the same sitting, however this ends up wired later.
+	$sent_flag = 'motherlode_atelier_sent_' . sanitize_key( $sitting );
+
+	if ( get_transient( $sent_flag ) ) {
+		return;
+	}
+
+	$said = array();
+
+	foreach ( Lamoureux_Atelier_Answers::the_map( $sitting, $atelier ) as $row ) {
+		$said[ (string) $row['key'] ] = (string) $row['said'];
+	}
+
+	if ( array() === $said ) {
+		return;
+	}
+
+	motherlode_atelier_finished( $atelier, $said );
+
+	set_transient( $sent_flag, true, DAY_IN_SECONDS );
+}
+add_action( 'lamoureux_atelier_she_is_happy', 'motherlode_atelier_confirmed', 10, 2 );
+
+/**
  * "You can't call it a store. These are people; these are their
  * businesses." — 2 September 2026.
  *
