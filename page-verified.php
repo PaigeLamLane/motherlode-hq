@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-$localilly_asking = localilly_what_we_ask_for()['the-dollar'];
+$localilly_asking = motherlode_what_we_ask_for()['the-dollar'];
 $localilly_money  = localilly_can_money_move();
 ?>
 

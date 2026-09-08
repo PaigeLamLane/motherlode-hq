@@ -41,8 +41,14 @@ declare( strict_types=1 );
 
 defined( 'ABSPATH' ) || exit;
 
-/** What a verified neighbour holds, in one word, in one place. */
-const LOCALILLY_VERIFIED = 'localilly-verified';
+/**
+ * What a verified neighbour holds, in one word, in one place.
+ *
+ * Renamed 8 September 2026 alongside her-money.php, off The Shipper's
+ * finding — the two must move together or a real payment writes one
+ * string while this checks for another.
+ */
+const MOTHERLODE_VERIFIED = 'motherlode-verified';
 
 /**
  * A dollar landed, so the neighbour who paid it is kept.
@@ -59,7 +65,7 @@ function localilly_the_dollar_is_kept( array $bought ): void {
 		return;
 	}
 
-	if ( LOCALILLY_VERIFIED !== (string) ( $bought['of'] ?? '' ) ) {
+	if ( MOTHERLODE_VERIFIED !== (string) ( $bought['of'] ?? '' ) ) {
 		return;
 	}
 
@@ -75,13 +81,13 @@ function localilly_the_dollar_is_kept( array $bought ): void {
 	 * with a date on it would quietly become a yearly fee.
 	 */
 	if ( class_exists( 'Lamoureux_Billing_Entitlements' )
-		&& ! Lamoureux_Billing_Entitlements::holds( $owner, 'localilly', LOCALILLY_VERIFIED ) ) {
+		&& ! Lamoureux_Billing_Entitlements::holds( $owner, 'localilly', MOTHERLODE_VERIFIED ) ) {
 
 		Lamoureux_Billing_Entitlements::write(
 			array(
 				'owner'      => $owner,
 				'business'   => 'localilly',
-				'holds'      => LOCALILLY_VERIFIED,
+				'holds'      => MOTHERLODE_VERIFIED,
 				'source'     => Lamoureux_Billing_Entitlements::BY_ONE_OFF,
 				'ends_how'   => Lamoureux_Billing_Entitlements::ENDS_NEVER,
 				'stripe_ref' => (string) ( $bought['stripe_ref'] ?? '' ),

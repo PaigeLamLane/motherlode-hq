@@ -23,40 +23,56 @@
  * webhook — this names three prices and hands them over.
  *
  * @package LocaLilly
+ *
+ * RENAMED, 8 September 2026, off The Shipper's own finding: this file is
+ * LocaLilly's, cloned wholesale, and its function, entitlement keys,
+ * amount constants and payer-facing descriptions were still LocaLilly's
+ * name — the one thing a real payer would actually read on their own
+ * bank statement and on their own receipt. Nought entitlement rows exist
+ * yet, so nothing needed migrating. The underlying business idea below
+ * (a neighbour, a young person, a lawn) is still LocaLilly's own and has
+ * nothing to do with MotherLode HQ — this rename only stops the wrong
+ * name reaching a real card, it does not make this MotherLode's real
+ * payment road. `page-verified.php`'s call to this array is unreachable
+ * today (confirmed: no live page carries that template or that slug),
+ * and the nonce the actual charge road checks for is never printed on
+ * any real page either, since the "Young Person" post type carries zero
+ * posts. So this was dormant when found — the same shape as the-dollar
+ * -lands.php, mended before its own switching-on rather than after.
  */
 
 defined( 'ABSPATH' ) || exit;
 
-const LOCALILLY_DOLLAR   = 100;    // one dollar, in cents
-const LOCALILLY_MONTHLY  = 1000;   // ten dollars a month
-const LOCALILLY_GIFT_YEAR = 12000; // a hundred and twenty for a year
+const MOTHERLODE_DOLLAR    = 100;    // one dollar, in cents
+const MOTHERLODE_MONTHLY   = 1000;   // ten dollars a month
+const MOTHERLODE_GIFT_YEAR = 12000; // a hundred and twenty for a year
 
 /**
- * What LocaLilly sells, in her words.
+ * What this leftover road asks for, in her words.
  *
  * @return array<string, array<string, mixed>>
  */
-function localilly_what_we_ask_for(): array {
+function motherlode_what_we_ask_for(): array {
 	return array(
 		'the-dollar' => array(
-			'holds'    => 'localilly-verified',
-			'describe' => 'LocaLilly · one dollar, once, so a young person knows who asked for them',
-			'amount'   => LOCALILLY_DOLLAR,
+			'holds'    => 'motherlode-verified',
+			'describe' => 'MotherLode HQ · one dollar, once, so a young person knows who asked for them',
+			'amount'   => MOTHERLODE_DOLLAR,
 			'mode'     => 'payment',
 			'says'     => localilly_say( 'm_dollar_why' ) ?: 'We are committed to community safety, and that starts with a real person behind every account. One dollar on your own card, once — it takes seconds, and it means a young person arriving for your shift knows exactly who asked for them.',
 		),
 		'a-place'    => array(
-			'holds'    => 'localilly-listed',
-			'describe' => 'LocaLilly · your business, ten dollars a month',
-			'amount'   => LOCALILLY_MONTHLY,
+			'holds'    => 'motherlode-listed',
+			'describe' => 'MotherLode HQ · your business, ten dollars a month',
+			'amount'   => MOTHERLODE_MONTHLY,
 			'mode'     => 'subscription',
 			'every'    => 'month',
-			'says'     => localilly_say( 'm_monthly_why' ) ?: 'Ten dollars a month keeps your business here, and your first month is free. Every dollar a neighbour pays you is yours — LocaLilly takes none of it.',
+			'says'     => localilly_say( 'm_monthly_why' ) ?: 'Ten dollars a month keeps your business here, and your first month is free. Every dollar a neighbour pays you is yours — MotherLode HQ takes none of it.',
 		),
 		'a-gift'     => array(
-			'holds'    => 'localilly-listed',
-			'describe' => 'LocaLilly · a year for somebody, given',
-			'amount'   => LOCALILLY_GIFT_YEAR,
+			'holds'    => 'motherlode-listed',
+			'describe' => 'MotherLode HQ · a year for somebody, given',
+			'amount'   => MOTHERLODE_GIFT_YEAR,
 			'mode'     => 'payment',
 			'says'     => localilly_say( 'm_gift_why' ) ?: 'A year of their own business, bought for them. Their page, their prices and their words are theirs from the first day — and when the year is up it is theirs to carry on.',
 		),
@@ -75,7 +91,7 @@ function localilly_send_them_to_pay( string $what, string $owner = '', string $b
 		return new WP_Error( 'localilly_no_billing', 'The billing module is absent, so nobody was sent anywhere rather than sent nowhere.' );
 	}
 
-	$all = localilly_what_we_ask_for();
+	$all = motherlode_what_we_ask_for();
 
 	if ( ! isset( $all[ $what ] ) ) {
 		return new WP_Error( 'localilly_no_such_price', 'LocaLilly asks for three things and that is none of them.' );

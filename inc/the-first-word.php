@@ -48,8 +48,9 @@ function localilly_they_are_verified(): bool {
 	 * forever — a neighbour paying and still finding no way to write.
 	 *
 	 * `her-money.php` already declares what the dollar buys —
-	 * `localilly-verified` — and the billing module records it when the
-	 * payment lands. **The entitlement is the fact. A second copy of it in
+	 * `motherlode-verified` (renamed 8 September 2026, off The Shipper's
+	 * finding) — and the billing module records it when the payment
+	 * lands. **The entitlement is the fact. A second copy of it in
 	 * post meta is a second thing to keep true.**
 	 */
 	/*
@@ -69,7 +70,7 @@ function localilly_they_are_verified(): bool {
 	return Lamoureux_Billing_Entitlements::holds(
 		Lamoureux_Billing_Entitlements::owner_key(),
 		'localilly',
-		'localilly-verified'
+		'motherlode-verified'
 	);
 }
 
