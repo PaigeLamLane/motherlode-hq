@@ -110,7 +110,17 @@ require_once get_stylesheet_directory() . '/inc/her-money.php';
 require_once get_stylesheet_directory() . '/inc/the-onward-road.php';
 require_once get_stylesheet_directory() . '/inc/their-place.php';
 require_once get_stylesheet_directory() . '/inc/the-first-word.php';
-require_once get_stylesheet_directory() . '/inc/the-dollar-lands.php';
+/*
+ * 8 September 2026 — inc/the-dollar-lands.php removed, real fault, real
+ * key. It answered `?paid` on ANY page with the account's own last five
+ * Stripe sessions and handed a match to whoever asked — no sign-in, no
+ * proof it was theirs. A real live key exists on this world now (it did
+ * not on 6 September), which is what made this go from dormant to armed.
+ * Found by LocaLilly, already deleted on their own world and UNiiVERSE
+ * for the same reason. The safe road stays: `the-dollar-is-kept.php`
+ * below, which only ever hears a payment from billing itself, bound to
+ * its owner from the moment it is made — her own law for this exactly.
+ */
 require_once get_stylesheet_directory() . '/inc/the-dollar-is-kept.php';
 require_once get_stylesheet_directory() . '/inc/what-became-of-it.php';
 require_once get_stylesheet_directory() . '/inc/the-way-back-in.php';
