@@ -2667,31 +2667,54 @@ a:hover { color: var(--lode-plum); }
 .motherlode-direct-enquiry button { align-self: flex-start; }
 
 
-.sec--first { padding: 5rem 1.5rem; }
+/*
+ * 14 September 2026 — her words, walking the live site: "the hero is
+ * amazing and then we lose it." Found here: a section sitting on plain
+ * cream, padded top and bottom well past what its own content needed,
+ * behind a decorative mark so faint it read as nothing at all. Two
+ * fixes together — a real background wash carrying the hero's own
+ * warmth down the page, and padding cut back so the section reads as
+ * a beat rather than a pause.
+ */
+.sec--first {
+	padding: 3.4rem 1.5rem;
+	background: radial-gradient(120% 140% at 15% 0%, color-mix(in srgb, var(--lode-orange) 10%, transparent), transparent 60%),
+		radial-gradient(120% 140% at 85% 100%, color-mix(in srgb, var(--lode-berry) 8%, transparent), transparent 60%);
+}
 .first-grid {
 	max-width: 64rem; margin: 0 auto;
 	display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
 }
 @media (min-width: 780px) { .first-grid { grid-template-columns: .8fr 1.2fr; gap: 3.5rem; } }
-.first-mark { position: relative; aspect-ratio: 1; max-width: 16rem; margin: 0 auto; }
+.first-mark { position: relative; aspect-ratio: 1; max-width: 14rem; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
 .first-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
-.first-lines line { stroke: var(--lode-keyline); stroke-width: 1; }
+.first-lines line { stroke: var(--lode-coral); stroke-width: 2; opacity: .55; }
 .first-node {
-	position: absolute; width: .9rem; height: .9rem; border-radius: 50%;
+	position: absolute; width: 1.1rem; height: 1.1rem; border-radius: 50%;
 	background: linear-gradient(135deg, var(--lode-orange), var(--lode-berry));
-	box-shadow: 0 0 0 6px color-mix(in srgb, var(--lode-coral) 14%, transparent);
+	box-shadow: 0 0 0 8px color-mix(in srgb, var(--lode-coral) 20%, transparent);
 }
 .first-node--a { left: 18%; top: 72%; }
-.first-node--b { left: 48%; top: 22%; width: 1.3rem; height: 1.3rem; }
-.first-node--c { left: 80%; top: 58%; opacity: .5; }
+.first-node--b { left: 48%; top: 22%; width: 1.5rem; height: 1.5rem; }
+.first-node--c { left: 80%; top: 58%; opacity: .75; }
 @media (prefers-reduced-motion: no-preference) {
 	.first-node--b { animation: lode-node-pulse 2.8s ease-in-out infinite; }
 }
 @keyframes lode-node-pulse {
-	0%, 100% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--lode-coral) 14%, transparent); }
-	50% { box-shadow: 0 0 0 12px color-mix(in srgb, var(--lode-coral) 22%, transparent); }
+	0%, 100% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--lode-coral) 20%, transparent); }
+	50% { box-shadow: 0 0 0 15px color-mix(in srgb, var(--lode-coral) 30%, transparent); }
 }
-.first-copy .body { margin: 0 0 1rem; }
+/* The numeral sits behind the constellation, big and quiet — the mark carries real weight even before anyone reads a word beside it. */
+.first-mark-num {
+	position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+	font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 600;
+	font-size: 5.4rem; line-height: 1;
+	background: linear-gradient(135deg, var(--lode-orange), var(--lode-berry));
+	-webkit-background-clip: text; background-clip: text; color: transparent;
+	opacity: .22; z-index: -1;
+}
+.first-copy .body { margin: 0 0 1.4rem; }
+.first-copy .lode-hero-ctas { justify-content: flex-start; }
 
 
 .lode-fields-cloud {

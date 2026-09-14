@@ -258,23 +258,28 @@ get_template_part( 'template-parts/signpost' );
 
 <?php
 /*
- * ── YOU'D BE AMONG THE FIRST — 4 September 2026, replacing "In Their
- * Own Words" ──────────────────────────────────────────────────────────
- * Her words, direct: the bottom of the homepage is "no good at all...
- * there's just nothing." Real cause, found looking honestly rather than
- * patching what was there: the section this replaced quoted two named
- * people — "Rosa M.," "Aiden T." — on a site where Total profiles
- * showing: 0. Nobody by those names exists. Her own truth law forbids a
- * claim about a person that was never given, and an invented person is
- * exactly that, however warm the quote reads.
+ * ── BE THE FIRST NAME HERE — rebuilt 14 September 2026, replacing
+ * "You'd Be Among The First" ────────────────────────────────────────
+ * Her words, direct, walking the live site: the hero is amazing and
+ * then we lose it. Found exactly where: this section, immediately
+ * after the signpost, opened on absence — "Nobody's live here yet" —
+ * sitting on plain cream behind a decorative mark so faint (three
+ * small dots, hairline strokes) it read as empty space rather than
+ * as a graphic. Two things dying in the same breath: the words and
+ * the picture both went quiet at the exact point the hero's own
+ * energy needed somewhere to land.
  *
- * The honest version doesn't hide that this is new. It says so, and
- * turns it into the actual pitch — the same reason an early booking on
- * any real marketplace is worth more than a late one. Real for a
- * professional (found first, before the field crowds) and real for a
- * business (first pick, before everyone else notices too). No invented
- * feature, no fabricated discount — just what's true about arriving
- * early, said plainly.
+ * The honesty underneath is right and stays — her own truth law
+ * forbids a claim about a person that was never given, and this
+ * business genuinely has no profiles live yet. What changes is the
+ * order the sentence is said in. Leading on what she gets rather
+ * than on what doesn't exist yet is the same fact, said as a door
+ * rather than an apology — and it closes on a real line instead of
+ * trailing off.
+ *
+ * The mark itself is rebuilt heavier — real weight, real colour,
+ * genuinely visible — because a graphic nobody can see does the exact
+ * same damage as a blank stretch of page.
  */
 ?>
 <section class="sec sec--first">
@@ -287,12 +292,16 @@ get_template_part( 'template-parts/signpost' );
 				<line x1="40" y1="150" x2="100" y2="50" />
 				<line x1="100" y1="50" x2="165" y2="120" />
 			</svg>
+			<span class="first-mark-num">1st</span>
 		</div>
 		<div class="first-copy">
-			<p class="eyebrow">The Honest Part</p>
-			<h2 class="head lift">You'd Be Among The First.</h2>
-			<p class="body body--wide">Nobody's live here yet — this is that early. For a professional, it's the moment a field is easiest to be found in, before it's crowded. For a business, it's first pick of exactly who you need, before anyone else has noticed her either.</p>
-			<p class="body body--wide">Neither of those is a small thing. It's the whole difference between arriving somewhere and helping build it.</p>
+			<p class="eyebrow">The Ground Floor</p>
+			<h2 class="head lift">Be The First Name Here.</h2>
+			<p class="body body--wide">This early, a professional is found before the field crowds — and a business gets first pick of exactly who they need, before anyone else has noticed her either. Somebody has to be first. It might as well be you.</p>
+			<div class="lode-hero-ctas">
+				<a class="lode-btn lode-btn--outline" href="<?php echo esc_url( home_url( '/for-talent/' ) ); ?>">Build Your Profile <span aria-hidden="true">&rarr;</span></a>
+				<a class="lode-btn lode-btn--outline" href="<?php echo esc_url( home_url( '/for-business/' ) ); ?>">Find Exceptional Help <span aria-hidden="true">&rarr;</span></a>
+			</div>
 		</div>
 	</div>
 </section>
