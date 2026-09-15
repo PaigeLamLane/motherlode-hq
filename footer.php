@@ -40,7 +40,7 @@ defined( 'ABSPATH' ) || exit;
 			<a href="<?php echo esc_url( home_url( '/join/' ) ); ?>">Join</a>
 		</nav>
 
-		<p class="lode-foot-fine">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> MotherLode HQ &middot; Madame Monet<br>ABN 40 366 975 511 &middot; <a href="mailto:fractional@motherlodehq.com.au">fractional@motherlodehq.com.au</a><br><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy</a> &middot; <a href="<?php echo esc_url( home_url( '/terms-of-service/' ) ); ?>">Terms</a> &middot; <a href="<?php echo esc_url( home_url( '/refund-policy/' ) ); ?>">Refunds</a></p>
+		<p class="lode-foot-fine">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> MotherLode HQ &middot; Madame Monet<br>ABN 40 366 975 511 &middot; <a href="mailto:fractional@motherlodehq.com.au">fractional@motherlodehq.com.au</a><br><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy</a> &middot; <a href="<?php echo esc_url( home_url( '/terms-of-service/' ) ); ?>">Terms</a> &middot; <a href="<?php echo esc_url( home_url( '/refund_returns/' ) ); ?>">Refunds</a></p>
 	</div>
 </footer>
 <?php wp_footer(); ?>
