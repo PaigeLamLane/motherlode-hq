@@ -1,0 +1,152 @@
+/* A LOOK — the new front, on a bench. Nan, 15 September 2026.
+   The entrance is the hero. The card is a flag in the wind. The constellation keeps going. */
+
+.lk-center { text-align: center; }
+.lk-sec { padding: clamp(3.4rem, 8vw, 6.5rem) 1.5rem; }
+.lk-sec .in { max-width: 72rem; margin: 0 auto; }
+
+/* ── THE HERO: her arrival, in flow, once ─────────────────────────────── */
+.lk-hero {
+	position: relative; overflow: hidden; background: var(--lode-cream, #FDF2F5);
+	min-height: calc(100svh - 4.5rem);
+	display: flex; align-items: center; justify-content: center;
+	padding: clamp(2rem, 5vh, 4rem) 1.2rem;
+}
+.lk-hero-glow {
+	position: absolute; inset: 0; z-index: 0;
+	background:
+		radial-gradient(58% 50% at 24% 20%, rgba(254,135,67,.26) 0%, rgba(254,135,67,0) 70%),
+		radial-gradient(64% 56% at 78% 74%, rgba(239,23,99,.24) 0%, rgba(239,23,99,0) 70%),
+		radial-gradient(50% 44% at 88% 10%, rgba(197,21,106,.20) 0%, rgba(197,21,106,0) 65%);
+}
+.lk-hero-ring { position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; opacity: 0; animation: lk-in 900ms ease 150ms both; }
+.lk-hero-ring::before {
+	content: ''; width: min(50vw, 42vh, 380px); aspect-ratio: 1; border-radius: 50%;
+	background: radial-gradient(circle at 40% 34%, rgba(255,143,179,.28) 0%, rgba(244,55,117,.16) 46%, rgba(244,55,117,0) 70%);
+}
+.lk-hero-inner { position: relative; z-index: 1; perspective: 1400px; text-align: center; width: 100%; max-width: 64rem; display: flex; flex-direction: column; align-items: center; gap: clamp(1rem, 3vh, 1.8rem); }
+.lk-hero-mark { margin: 0; width: min(90vw, 58vh, 920px); opacity: 0; animation: lk-mark-in 900ms cubic-bezier(.22,.61,.36,1) 650ms both; filter: drop-shadow(0 22px 44px rgba(61,8,54,.22)); font-size: 1rem; line-height: 0; }
+.lk-hero-mark .lode-mark-svg { width: 100%; height: auto; display: block; }
+.lk-hero-choose {
+	font-family: 'Fraunces', Georgia, serif; font-style: italic; font-optical-sizing: auto;
+	font-size: clamp(1.5rem, 3.6vw, 2.4rem); line-height: 1.2; font-weight: 500;
+	color: var(--lode-hero-ink, var(--lode-ink)); margin: 0; opacity: 0; animation: lk-in 800ms ease 2300ms both;
+}
+.lk-hero-choose strong { font-weight: 700; color: var(--lode-coral); }
+.lk-hero-paths { display: flex; flex-direction: column; gap: .9rem; width: 100%; max-width: 54rem; opacity: 0; animation: lk-in 700ms ease 3400ms both; }
+@media (min-width: 640px) { .lk-hero-paths { flex-direction: row; } }
+.lk-path { font-size: clamp(.92rem, 1.6vw, 1.05rem); line-height: 1.3; box-shadow: 0 14px 28px rgba(61,8,54,.16); }
+@media (prefers-reduced-motion: no-preference) { .lk-hero-glow { animation: lk-breathe 6s ease-in-out infinite; } }
+@keyframes lk-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes lk-mark-in { 0% { opacity: 0; transform: translateZ(-260px) scale(.82); } 100% { opacity: 1; transform: translateZ(0) scale(1); } }
+@keyframes lk-breathe { 0%, 100% { opacity: .85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+@media (prefers-reduced-motion: reduce) {
+	.lk-hero-ring, .lk-hero-mark, .lk-hero-choose, .lk-hero-paths { animation: none; opacity: 1; }
+}
+
+/* ── THE FLAG: hung from a rod, swaying, turning on its own ───────────── */
+.lk-flagsec { background: #fff; }
+.lk-flag-rig { max-width: 52rem; margin: 1.6rem auto 0; perspective: 1800px; position: relative; padding-top: 14px; }
+.lk-flag-rod {
+	position: absolute; left: -2%; right: -2%; top: 0; height: 8px; border-radius: 999px;
+	background: linear-gradient(90deg, var(--lode-plum) 0%, var(--lode-berry) 40%, var(--lode-coral) 70%, var(--lode-orange) 100%);
+	box-shadow: 0 6px 14px rgba(61,8,54,.22);
+}
+.lk-flag { position: relative; transform-style: preserve-3d; transform-origin: 50% 0; aspect-ratio: 16 / 9; min-height: 22rem; }
+.lk-flag-wind { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 0; }
+.lk-face {
+	position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+	display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: .9rem;
+	padding: clamp(1.8rem, 4vw, 3rem); border-radius: 0 0 26px 26px;
+	box-shadow: 0 24px 48px rgba(58,19,48,.2), inset 0 1px 0 rgba(255,255,255,.35), inset 0 -18px 32px rgba(0,0,0,.08);
+	overflow: hidden;
+}
+.lk-face::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+	background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.28) 50%, transparent 62%); background-size: 240% 240%; }
+.lk-face--parent { background: linear-gradient(120deg, var(--lode-orange) 0%, var(--lode-coral) 100%); }
+.lk-face--business { background: linear-gradient(120deg, var(--lode-plum) 0%, var(--lode-berry) 100%); transform: rotateY(180deg); }
+.lk-face .eyebrow { color: rgba(255,255,255,.85) !important; }
+.lk-face-head { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.15; color: #fff; margin: 0; font-weight: 600; }
+.lk-face-body { color: #fff; opacity: .92; font-size: clamp(.98rem, 1.5vw, 1.08rem); line-height: 1.6; max-width: 34rem; margin: 0; }
+@media (prefers-reduced-motion: no-preference) {
+	.lk-flag { animation: lk-turn 18s cubic-bezier(.6,0,.35,1) infinite; }
+	.lk-flag-wind { animation: lk-wind 3.6s ease-in-out infinite; }
+	.lk-face::after { animation: lk-sheen 3.6s ease-in-out infinite; }
+	.lk-flag:hover, .lk-flag:focus-within { animation-play-state: paused; }
+}
+@keyframes lk-turn { 0%, 44% { transform: rotateY(0deg); } 50%, 94% { transform: rotateY(180deg); } 100% { transform: rotateY(360deg); } }
+@keyframes lk-wind {
+	0%, 100% { transform: rotateX(0deg) skewY(0deg); }
+	25%       { transform: rotateX(2.4deg) skewY(-.9deg); }
+	50%       { transform: rotateX(-1.2deg) skewY(.4deg); }
+	75%       { transform: rotateX(1.8deg) skewY(-.5deg); }
+}
+@keyframes lk-sheen { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 100%; } }
+@media (prefers-reduced-motion: reduce) {
+	.lk-flag { aspect-ratio: auto; min-height: 0; }
+	.lk-face { position: static; transform: none; border-radius: 26px; margin-bottom: 1.2rem; }
+}
+
+/* ── THE SEAM: one vein, the fields hung off it ───────────────────────── */
+.lk-seam { background: var(--lode-cream, #FDF2F5); }
+.lk-h2 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.75rem, 3.4vw, 2.6rem); line-height: 1.15; color: var(--lode-ink); margin: .4rem 0 .6rem; font-weight: 600; }
+.lk-h3 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.2; color: var(--lode-ink); margin: .3rem 0 .5rem; font-weight: 600; }
+.lk-lede { color: var(--lode-body); font-size: clamp(1rem, 1.6vw, 1.15rem); max-width: 40rem; margin: 0 auto 2.6rem; line-height: 1.6; }
+.lk-body { color: var(--lode-body); font-size: clamp(.98rem, 1.5vw, 1.08rem); line-height: 1.65; margin: 0 0 1rem; max-width: 36rem; }
+.lk-vein { list-style: none; margin: 0; padding: 1rem 0 0; position: relative; }
+.lk-vein::before {
+	content: ''; position: absolute; top: 0; bottom: 0; left: 1.1rem; width: 3px; border-radius: 999px;
+	background: linear-gradient(180deg, var(--lode-orange) 0%, var(--lode-coral) 40%, var(--lode-berry) 75%, var(--lode-plum) 100%);
+	box-shadow: 0 0 18px rgba(240,41,94,.35);
+}
+.lk-ore { position: relative; padding: 0 0 1.4rem 3.2rem; }
+.lk-node {
+	position: absolute; left: calc(1.1rem + 1.5px); top: 1.55rem; width: 14px; height: 14px; border-radius: 50%; transform: translateX(-50%);
+	background: #fff; border: 3px solid var(--lode-coral); box-shadow: 0 0 0 6px rgba(240,41,94,.14);
+}
+.lk-ore-card { display: block; text-decoration: none; background: #fff; border-radius: 16px; padding: 1.1rem 1.3rem; border: 1px solid var(--lode-keyline, #ECE3DC); box-shadow: 0 10px 24px rgba(61,8,54,.06); transition: transform .18s ease, box-shadow .18s ease; }
+.lk-ore-card:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(61,8,54,.12); }
+.lk-ore-name { display: block; font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 600; color: var(--lode-berry); margin-bottom: .3rem; }
+.lk-ore-said { display: block; color: var(--lode-body); font-size: .98rem; line-height: 1.55; }
+@media (min-width: 820px) {
+	.lk-vein::before { left: 50%; transform: translateX(-50%); }
+	.lk-ore { width: 50%; padding: 0 3rem 1.2rem 0; }
+	.lk-ore--r { margin-left: 50%; padding: 0 0 1.2rem 3rem; }
+	.lk-ore--l .lk-node { left: auto; right: -7px; transform: none; }
+	.lk-ore--r .lk-node { left: -7px; transform: none; }
+	.lk-ore--l .lk-ore-card { text-align: right; }
+}
+
+/* ── HOW IT WORKS ─────────────────────────────────────────────────────── */
+.lk-steps { background: #fff; }
+.lk-steplist { list-style: none; margin: 1.6rem auto 0; padding: 0; display: grid; gap: 2rem; max-width: 64rem; }
+@media (min-width: 760px) { .lk-steplist { grid-template-columns: repeat(3, 1fr); } }
+.lk-stepnum { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 2rem; color: var(--lode-coral); display: block; }
+
+/* ── HERS · HIS ───────────────────────────────────────────────────────── */
+.lk-hers { background: linear-gradient(135deg, var(--lode-coral) 0%, var(--lode-berry) 100%); color: #fff; }
+.lk-his  { background: linear-gradient(135deg, var(--lode-plum) 0%, var(--lode-berry) 100%); color: #fff; }
+.lk-two { display: grid; gap: 2.4rem; align-items: center; }
+@media (min-width: 860px) { .lk-two { grid-template-columns: 1fr 1.1fr; } .lk-two--flip { grid-template-columns: 1.1fr 1fr; } }
+.lk-hers .eyebrow, .lk-his .eyebrow { color: rgba(255,255,255,.85) !important; }
+.lk-hers .lk-h2, .lk-his .lk-h2, .lk-hers .lk-body, .lk-his .lk-body { color: #fff; }
+.lk-hers .lk-body, .lk-his .lk-body { opacity: .94; }
+.lk-imagine { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.3; color: #fff; margin: .2rem 0 1.2rem; max-width: 30rem; }
+.lk-thesis { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.3; color: #FFE1EC; margin: .2rem 0 1.2rem; max-width: 30rem; }
+.lk-proud { font-family: 'Fraunces', Georgia, serif; font-size: clamp(1.3rem, 2.6vw, 1.9rem); color: #fff; margin: .6rem 0 1.2rem; }
+.lk-proud strong { font-weight: 700; color: #FFD27A; }
+.lk-word { color: #fff; text-decoration: none; border-bottom: 2px solid rgba(255,255,255,.7); padding-bottom: 3px; font-weight: 600; font-size: 1.05rem; transition: border-color .18s ease; }
+.lk-word:hover { border-color: #fff; }
+.lk-photo { aspect-ratio: 4 / 5; border-radius: 22px; background: rgba(255,255,255,.14); border: 1px dashed rgba(255,255,255,.5); display: flex; align-items: center; justify-content: center; padding: 2rem; max-width: 30rem; margin: 0 auto; width: 100%; }
+.lk-photo-note { color: rgba(255,255,255,.85); font-style: italic; text-align: center; font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; line-height: 1.5; }
+
+/* ── HER WORDS ────────────────────────────────────────────────────────── */
+.lk-words { background: #fff; }
+.lk-four { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: clamp(1.2rem, 2.4vw, 1.7rem); color: var(--lode-berry); margin: 0 0 .8rem; }
+.lk-four i { font-style: normal; color: var(--lode-coral); margin: 0 .55em; }
+.lk-four--six { color: var(--lode-plum); }
+.lk-meraki { max-width: 40rem; margin: 1.6rem auto 0; color: var(--lode-body); font-size: 1.02rem; line-height: 1.65; }
+
+/* ── THE DOOR ─────────────────────────────────────────────────────────── */
+.lk-close { background: var(--lode-cream, #FDF2F5); }
+.lk-hero-paths--close { opacity: 1; animation: none; margin: 1.6rem auto 0; }
